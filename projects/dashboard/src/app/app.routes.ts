@@ -17,4 +17,14 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./features/products/products.component').then((c) => c.ProductsComponent),
     canActivate: [adminGuard]
   },
+  {
+    path: 'products/create',
+    loadComponent: () => import('./features/products/pages/create-update-product/create-update-product.component').then((c) => c.CreateUpdateProductComponent),
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'products/update/:id',
+    loadComponent: () => import('./features/products/pages/create-update-product/create-update-product.component').then((c) => c.CreateUpdateProductComponent),
+    canActivate: [adminGuard]
+  },
 ];

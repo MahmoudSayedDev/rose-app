@@ -47,6 +47,11 @@
   --sidebar-item-hover-bg: #FBEAEA;
   --sidebar-item-active-bg: #FBEAEA;
   --sidebar-item-active-text: #A6252A;
+
+  --p-select-option-selected-color: #A6252A !important;
+  --p-select-option-selected-focus-color: #A6252A !important;
+  --p-select-option-selected-background: #FBEAEA !important;
+  --p-select-option-selected-focus-background: #FBEAEA !important;
 }
 
 .dark {
@@ -75,6 +80,11 @@
   --sidebar-item-hover-bg: rgba(255, 163, 185, 0.12);
   --sidebar-item-active-bg: rgba(255, 163, 185, 0.16);
   --sidebar-item-active-text: #FFA3B9;
+
+  --p-select-option-selected-color: #FFA3B9 !important;
+  --p-select-option-selected-focus-color: #FFA3B9 !important;
+  --p-select-option-selected-background: #ffa3b912 !important;
+  --p-select-option-selected-focus-background: #ffa3b912 !important;
 
   background: #27272A;
 }

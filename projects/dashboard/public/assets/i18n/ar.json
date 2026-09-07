@@ -1,4 +1,21 @@
 {
+  "common": {
+    "actions": {
+      "edit": "تعديل",
+      "delete": "حذف",
+      "yes,delete": "نعم، حذف",
+      "no": "لا",
+      "action": "الاجراء"
+    },
+    "messages": {
+      "search": "بحث ...",
+      "Are you sure you want to delete it?": "هل أنت متأكد أنك تريد الحذف؟",
+      "deleted successfully": "تم الحذف بنجاح"
+    },
+    "currency": {
+      "EGP": "ج.م"
+    }
+  },
   "sidebar": {
     "previewWebsite": "معاينة الموقع",
     "nav": {
@@ -11,6 +28,51 @@
     "userMenu": {
       "profile": "الملف الشخصي",
       "logout": "تسجيل الخروج"
+    }
+  },
+  "products": {
+    "all products": "كل المنتجات",
+    "add a new product": "إضافة منتج جديد",
+    "Add Product": "إضافة منتج",
+    "list": {
+      "name": "الاسم",
+      "price": "السعر",
+      "stock": "العدد",
+      "rating": "التقييم"
+    },
+    "forms": {
+      "Title": "اسم المنتج",
+      "Enter product title": "ادخل اسم المنتج",
+      "Description": "الوصف",
+      "Enter product description": "ادخل وصف المنتج",
+      "Price": "السعر",
+      "Price Example": "مثال: 5000",
+      "Discount": "الخصم",
+      "Discount Example": "مثال: 5",
+      "Price after discount": "السعر بعد الخصم",
+      "after Discount Example": "مثال: 5",
+      "Quantity": "الكمية",
+      "Quantity Example": "مثال: 200",
+      "Product cover image": "صورة غلاف المنتج",
+      "Product gallery": "صور المنتج",
+      "Category": "الفئة",
+      "Occasion": "المناسبة",
+      "Select an option": "اختر",
+      "Upload file": "رفع ملف",
+      "Upload files": "رفع ملفات",
+      "validation": {
+        "Product title is required": "عنوان المنتج مطلوب",
+        "Product description is required": "وصف المنتج مطلوب",
+        "Product price is required": "سعر المنتج مطلوب",
+        "Please enter a valid price": "يرجى إدخال سعر صالح",
+        "Please enter a valid discount": "يرجى إدخال خصم صالح",
+        "Product quantity is required": "كمية المنتج مطلوبة",
+        "Please enter a valid quantity": "يرجى إدخال عدد صالح",
+        "Product cover is required": "صورة غلاف المنتج مطلوبة",
+        "Product gallery images are required": "صور معرض المنتج مطلوبة",
+        "Please select a category for the product": "يرجى اختيار تصنيف للمنتج",
+        "Please select a occasion for the product": "يرجى اختيار مناسبة للمنتج"
+      }
     }
   }
 }
