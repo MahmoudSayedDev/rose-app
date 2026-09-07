@@ -52,6 +52,11 @@
   --p-select-option-selected-focus-color: #A6252A !important;
   --p-select-option-selected-background: #FBEAEA !important;
   --p-select-option-selected-focus-background: #FBEAEA !important;
+
+  --p-multiselect-option-selected-color: #A6252A !important;
+  --p-multiselect-option-selected-focus-color: #A6252A !important;
+  --p-multiselect-option-selected-background: #FBEAEA !important;
+  --p-multiselect-option-selected-focus-background: #FBEAEA !important;
 }
 
 .dark {
@@ -85,6 +90,11 @@
   --p-select-option-selected-focus-color: #FFA3B9 !important;
   --p-select-option-selected-background: #ffa3b912 !important;
   --p-select-option-selected-focus-background: #ffa3b912 !important;
+
+  --p-multiselect-option-selected-color: #FFA3B9 !important;
+  --p-multiselect-option-selected-focus-color: #FFA3B9 !important;
+  --p-multiselect-option-selected-background: #ffa3b912 !important;
+  --p-multiselect-option-selected-focus-background: #ffa3b912 !important;
 
   background: #27272A;
 }

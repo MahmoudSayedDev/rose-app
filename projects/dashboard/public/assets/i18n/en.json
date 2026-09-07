@@ -10,9 +10,9 @@
     "messages": {
       "search": "Search...",
       "Are you sure you want to delete it?": "Are you sure you want to delete it?",
-      "added successfully": "added successfully",
-      "updated successfully": "updated successfully",
-      "deleted successfully": "deleted successfully"
+      "added successfully": "Added successfully",
+      "updated successfully": "Updated successfully",
+      "deleted successfully": "Deleted successfully"
     },
     "currency": {
       "EGP": "EGP"
@@ -36,6 +36,7 @@
     "all products": "all products",
     "add a new product": "add a new product",
     "Add Product": "Add Product",
+    "update Product": "Update Product",
     "list": {
       "name": "name",
       "price": "price",

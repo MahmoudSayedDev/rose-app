@@ -10,6 +10,8 @@
     "messages": {
       "search": "بحث ...",
       "Are you sure you want to delete it?": "هل أنت متأكد أنك تريد الحذف؟",
+      "added successfully": "تم الاضافة بنجاح",
+      "updated successfully": "تم التعديل بنجاح",
       "deleted successfully": "تم الحذف بنجاح"
     },
     "currency": {

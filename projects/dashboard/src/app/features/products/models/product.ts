@@ -83,7 +83,7 @@ export interface CreateProductRequest {
   discountType: string;
   discountValue: number;
   categoryId: string;
-  occasionId: string;
+  occasionIds: []
   cover: string;
   gallery: any[];
 }

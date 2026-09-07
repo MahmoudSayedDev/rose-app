@@ -21,11 +21,11 @@ export class ProductsService {
     return this._httpClient.get<SingleProduct>(`${this.baseUrl}/api/products/${id}`)
   }
 
-  createProduct(data: CreateProductRequest): Observable<SingleProduct> {
+  createProduct(data: CreateProductRequest | Partial<CreateProductRequest>): Observable<SingleProduct> {
     return this._httpClient.post<SingleProduct>(`${this.baseUrl}/api/products`, data);
   }
 
-  updateProduct(id: string, data: CreateProductRequest): Observable<SingleProduct> {
+  updateProduct(id: string, data: Partial<CreateProductRequest>): Observable<SingleProduct> {
     return this._httpClient.patch<SingleProduct>(`${this.baseUrl}/api/products/${id}`, data);
   }
 

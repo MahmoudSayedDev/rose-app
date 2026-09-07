@@ -52,7 +52,7 @@ export class ProductsComponent extends AppComponentBase implements OnInit {
 
   initBreadcrumb() {
     this._layoutService.setToolbarItems([
-      { label: 'sidebar.nav.dashboard' },
+      { label: 'sidebar.nav.dashboard', routerLink: '/' },
       { label: 'sidebar.nav.products' }
     ]);
   }

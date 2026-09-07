@@ -16,6 +16,8 @@ import { ExternalParams } from '../../../../shared/models/external-params';
 import { CreateProductRequest, Product, SingleProduct } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 @Component({
   selector: 'app-create-update-product',
@@ -24,6 +26,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     InputComponent,
     TextareaModule,
     SelectModule,
+    MultiSelectModule,
     ButtonComponent,
     FileUploadModule,
     ReactiveFormsModule
@@ -54,7 +57,7 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
   form!: FormGroup
 
   productId = signal<string | null>('');
-  product = signal<Product | CreateProductRequest | null>(null);
+  product = signal<Product | null>(null);
 
   categories = signal<Category[]>([]);
   occasions = signal<Occasion[]>([]);
@@ -67,26 +70,25 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
     this.getOccasions()
   }
 
-  createForm(data?: CreateProductRequest) {
-    console.log(data);
-
+  createForm(data?: Product | null) {
     this.form = this.fb.group({
       title: [data?.title || '', [Validators.required]],
       description: [data?.description || '', [Validators.required]],
       price: [data?.price || '', [Validators.required, Validators.min(1)]],
+      discountType: ['PERCENT'],
       discountValue: [data?.discountValue || '', [Validators.min(1)]],
       price_after_discount: [{ value: '', disabled: true }],
       stock: [data?.stock ?? '', [Validators.required, Validators.min(0)]],
-      cover: [data?.cover || '', [Validators.required]],
-      gallery: [data?.gallery || [], [Validators.required]],
+      cover: [''],
+      gallery: [[]],
       categoryId: [data?.categoryId || '', [Validators.required]],
-      occasionId: [data?.occasionId || '', [Validators.required]],
+      occasionIds: [data?.occasions.map((occasion) => occasion.occasionId) || [], [Validators.required]],
     })
   }
 
   initBreadcrumb() {
     this._layoutService.setToolbarItems([
-      { label: 'sidebar.nav.dashboard' },
+      { label: 'sidebar.nav.dashboard', routerLink: '/' },
       { label: 'sidebar.nav.products', routerLink: '/products' },
       { label: 'products.Add Product' },
     ]);
@@ -103,7 +105,7 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
       next: (res: SingleProduct) => {
         this.product.set(res.payload.product)
 
-        this.createForm(this.product() as CreateProductRequest)
+        this.createForm(this.product())
       }
     })
   }
@@ -127,13 +129,16 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
   onCoverSelect(event: any) {
     const file = event.files[0];
     if (file) {
-      console.log('Cover:', file);
+      this.form.get('cover')?.markAsDirty()
+      this.form.get('cover')?.setValue(file)
     }
   }
 
   onGallerySelect(event: any) {
     const files = event.files;
-    console.log('Gallery:', files);
+    // console.log('Gallery:', files);
+    this.form.get('gallery')?.markAsDirty()
+    this.form.get('gallery')?.setValue(files)
   }
 
   discountChange() {
@@ -150,37 +155,52 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
     this._router.navigate(['/products'])
 
     if (action) {
-      this._toastService.toaster('success', this._translateService.instant(`common.messages.${action} successfully`) )
+      this._toastService.toaster('success', this._translateService.instant(`common.messages.${action} successfully`))
     }
   }
 
   save() {
+    this.formSubmited.set(true)
     this.form.markAllAsTouched();
 
     if (this.form.invalid) {
+      this.formSubmited.set(false)
       return;
     }
 
-    const formValues = this.form.value as CreateProductRequest
+    const dataToSend: Partial<CreateProductRequest> = {};
 
-    const dataToSend = {
-      title: formValues.title,
-      description: formValues.description,
-      price: formValues.price,
-      discountValue: formValues.discountValue,
-      stock: formValues.stock,
-      cover: formValues.cover,
-      gallery: formValues.gallery,
-      categoryId: formValues.categoryId,
-      occasionId: formValues.occasionId,
-    } as CreateProductRequest
+    Object.keys(this.form.controls).forEach((key) => {
+      const control = this.form.get(key);
 
-    
+      if (control?.dirty) {
+        if (key == 'price' || key == 'stock') {
+          dataToSend[key] = Number(control.value);
+        } else {
+          dataToSend[key as keyof CreateProductRequest] = control.value;
+        }
+      }
+    });
+    dataToSend.discountType = this.form.get('discountType')?.value
+
+
+
+    if (this.productId()) {
+      this._productsService.updateProduct(this.productId()!, dataToSend).subscribe({
+        next: () => {
+          this.afterSubmited('updated')
+        }, error: () => {
+          this.formSubmited.set(false)
+        }
+      })
+      return
+    }
+
     this._productsService.createProduct(dataToSend).subscribe({
       next: () => {
         this.afterSubmited('added')
       }, error: () => {
-        this.afterSubmited()
+        this.formSubmited.set(false)
       }
     })
   }
