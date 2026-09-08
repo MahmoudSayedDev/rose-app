@@ -212,7 +212,7 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
       const control = this.form.get(key);
 
       if (control?.dirty && control.value !== null) {
-        if (key === 'stock' || key === 'price') {
+        if (key === 'stock' || key === 'price' || key === 'discountValue') {
           dataToSend[key] = Number(control.value)
         } else {
           dataToSend[key as keyof CreateProductRequest] = control.value
@@ -233,6 +233,7 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
       return
     }
 
+    dataToSend.discountType = this.form.get('discountType')?.value
     this._productsService.createProduct(dataToSend).subscribe({
       next: () => {
         this.afterSubmited('added')
