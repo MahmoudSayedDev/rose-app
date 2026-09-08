@@ -9,7 +9,7 @@ export abstract class AppComponentBase {
 
   paginator = signal({
     page: 1,
-    limit: 20,
+    limit: 10,
     total: 0,
     totalPages: 0,
   })

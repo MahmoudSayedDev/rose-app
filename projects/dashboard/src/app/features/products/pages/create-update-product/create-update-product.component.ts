@@ -6,7 +6,7 @@ import { InputComponent, ButtonComponent } from "reusable-components";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TextareaModule } from 'primeng/textarea';
 import { SelectModule } from 'primeng/select';
-import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
+import { FileSelectEvent, FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
 import { CategoriesService } from '../../services/categories.service';
 import { OccasionsService } from '../../services/occasions.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -17,6 +17,8 @@ import { CreateProductRequest, Product, SingleProduct } from '../../models/produ
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { UploadService } from '../../../../shared/services/upload.service';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -45,6 +47,8 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _translateService = inject(TranslateService);
+  private readonly _UploadService = inject(UploadService);
+
 
 
   private getParams(): ExternalParams {
@@ -65,9 +69,9 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
   ngOnInit(): void {
     this.initBreadcrumb()
     this.createForm()
-    this.getProduct()
     this.getCategories()
     this.getOccasions()
+    this.getProduct()
   }
 
   createForm(data?: Product | null) {
@@ -126,19 +130,53 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
     })
   }
 
-  onCoverSelect(event: any) {
+  onCoverSelect(event: FileSelectEvent) {
     const file = event.files[0];
+
     if (file) {
-      this.form.get('cover')?.markAsDirty()
-      this.form.get('cover')?.setValue(file)
+
+      this.formSubmited.set(true)
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      this._UploadService.upload(formData).subscribe({
+        next: (res) => {
+          this.form.get('cover')?.setValue(res.payload.url)
+          this.form.get('cover')?.markAsDirty()
+          this.formSubmited.set(false)
+        }, error: () => {
+          this.formSubmited.set(false)
+        }
+      })
     }
   }
 
-  onGallerySelect(event: any) {
-    const files = event.files;
-    // console.log('Gallery:', files);
-    this.form.get('gallery')?.markAsDirty()
-    this.form.get('gallery')?.setValue(files)
+  onGallerySelect(event: FileSelectEvent) {
+    const imgs: File[] = Array.from(event.files) as File[];
+    this.formSubmited.set(true);
+
+    const uploadRequests = imgs.map((img) => {
+      const formData = new FormData();
+      formData.append('image', img);
+
+      return this._UploadService.upload(formData);
+    });
+
+    forkJoin(uploadRequests).subscribe({
+      next: (responses) => {
+        const newImgs = responses.map(res => res.payload.url);
+
+        this.form.get('gallery')?.setValue(newImgs);
+        this.form.get('gallery')?.markAsDirty();
+
+        this.formSubmited.set(false);
+      },
+      error: (error) => {
+        console.error(error);
+        this.formSubmited.set(false);
+      }
+    });
   }
 
   discountChange() {
@@ -160,7 +198,7 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
   }
 
   save() {
-    this.formSubmited.set(true)
+    // this.formSubmited.set(true)
     this.form.markAllAsTouched();
 
     if (this.form.invalid) {
@@ -168,22 +206,21 @@ export class CreateUpdateProductComponent extends AppComponentBase implements On
       return;
     }
 
-    const dataToSend: Partial<CreateProductRequest> = {};
+    const dataToSend = {} as Partial<CreateProductRequest>
 
     Object.keys(this.form.controls).forEach((key) => {
       const control = this.form.get(key);
 
-      if (control?.dirty) {
-        if (key == 'price' || key == 'stock') {
-          dataToSend[key] = Number(control.value);
+      if (control?.dirty && control.value !== null) {
+        if (key === 'stock' || key === 'price') {
+          dataToSend[key] = Number(control.value)
         } else {
-          dataToSend[key as keyof CreateProductRequest] = control.value;
+          dataToSend[key as keyof CreateProductRequest] = control.value
         }
       }
     });
-    dataToSend.discountType = this.form.get('discountType')?.value
 
-
+    console.log(dataToSend);
 
     if (this.productId()) {
       this._productsService.updateProduct(this.productId()!, dataToSend).subscribe({

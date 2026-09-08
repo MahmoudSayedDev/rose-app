@@ -1,5 +1,5 @@
 <div class="m-4 p-4">
-    @if (product()) {
+    @if (productId()) {
         <h2 class="text-lg lg:text-3xl font-bold capitalize">{{'products.update Product' | translate}}: {{product()?.title}}</h2>
     } @else {
         <h2 class="text-lg lg:text-3xl font-bold capitalize">{{'products.add a new product' | translate}}</h2>
@@ -145,7 +145,7 @@
                         id="gallery"
                         mode="basic"
                         name="gallery"
-                        accept="image/jpeg,image/jpg,image/png"
+                        accept="image/jpeg,image/png,image/gif,image/webp,"
                         [multiple]="true"
                         [maxFileSize]="5000000"
                         [chooseLabel]="'products.forms.Upload files' | translate"
