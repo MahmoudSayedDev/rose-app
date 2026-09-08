@@ -1,0 +1,230 @@
+<div class="m-4 p-4">
+    @if (productId()) {
+        <h2 class="text-lg lg:text-3xl font-bold capitalize">{{'products.update Product' | translate}}: {{product()?.title}}</h2>
+    } @else {
+        <h2 class="text-lg lg:text-3xl font-bold capitalize">{{'products.add a new product' | translate}}</h2>
+    }
+</div>
+
+<div class="bg-white dark:bg-[#19191a] m-4 p-4 rounded">
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="w-full lg:w-[75%]">
+            <div class="mb-4">
+                <lib-input
+                    [label]="'products.forms.Title' | translate"
+                    type="text"
+                    inputId="title"
+                    [placeholder]="'products.forms.Enter product title' | translate"
+                    [required]="true"
+                    formControlName="title"
+                    [valid]="form.get('title')?.touched! && form.get('title')?.hasError('required')!"
+                    [customErrorMessages]="{
+                        required: 'products.forms.validation.Product title is required',
+                    }"
+                    styleClass="bg-transparent! rounded-lg!"
+                ></lib-input>
+            </div>
+
+            <div class="mb-4">
+                <div class="flex gap-1">
+                    <label for="description" class="label dark:text-white! capitalize">{{'products.forms.Description' | translate}}</label>
+                    <span class="text-red-600 font-medium">*</span>
+                </div>
+                <textarea 
+                    id="description"
+                    rows="5"
+                    pTextarea 
+                    [placeholder]="'products.forms.Enter product description' | translate"
+                    class="w-full bg-transparent! mt-2"
+                    formControlName="description" 
+                    [invalid]="form.get('description')?.touched! && form.get('description')?.hasError('required')!"
+                    variant="filled">
+                </textarea>
+
+                @if (form.get('description')?.touched! && form.get('description')?.hasError('required')!) {
+                    <div class="error">
+                        {{'products.forms.validation.Product description is required' | translate}}
+                    </div>
+                }
+            </div>
+
+            <div class="mb-4 grid grid-cols-1 lg:grid-cols-3 gap-3">
+                <lib-input
+                    [label]="'products.forms.Price' | translate"
+                    type="number"
+                    inputId="price"
+                    [placeholder]="'products.forms.Price Example' | translate"
+                    [required]="true"
+                    formControlName="price"
+                    (input)="discountChange()"
+                    [valid]="form.get('price')?.touched! && (form.get('price')?.hasError('required')! || form.get('price')?.hasError('min')!)"
+                    [min]="0"
+                    [customErrorMessages]="{
+                        required: 'products.forms.validation.Product price is required',
+                        min: 'products.forms.validation.Please enter a valid price'
+                    }"
+                    styleClass="bg-transparent! rounded-lg!"
+                ></lib-input>
+
+                <lib-input
+                    [label]="'products.forms.Discount' | translate"
+                    type="number"
+                    inputId="discountValue"
+                    [placeholder]="'products.forms.Discount Example' | translate"
+                    formControlName="discountValue"
+                    (input)="discountChange()"
+                    [valid]="form.get('discountValue')?.touched! && form.get('discountValue')?.hasError('min')!"
+                    [customErrorMessages]="{
+                        min: 'products.forms.validation.Please enter a valid discount'
+                    }"
+                    styleClass="bg-transparent! rounded-lg!"
+                ></lib-input>
+
+                <lib-input
+                    [label]="'products.forms.Price after discount' | translate"
+                    type="number"
+                    inputId="price_after_discount"
+                    [placeholder]="'products.forms.after Discount Example' | translate"
+                    formControlName="price_after_discount"
+                    /* [valid]="form.get('price_after_discount')?.touched! && form.get('price_after_discount')?.hasError('required')!" */
+                    styleClass="rounded-lg!"
+                ></lib-input>
+            </div>
+
+            <div class="mb-4">
+                <lib-input
+                    [label]="'products.forms.Quantity' | translate"
+                    type="number"
+                    inputId="stock"
+                    [placeholder]="'products.forms.Quantity Example' | translate"
+                    [required]="true"
+                    formControlName="stock"
+                    [valid]="form.get('stock')?.touched! && (form.get('stock')?.hasError('required')! || form.get('stock')?.hasError('min')!)"
+                    [customErrorMessages]="{
+                        required: 'products.forms.validation.Product quantity is required',
+                        min: 'products.forms.validation.Please enter a valid quantity'
+                    }"
+                    styleClass="bg-transparent! rounded-lg!"
+                ></lib-input>
+            </div>
+
+            <div class="mb-4 grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div>
+                    <div class="flex gap-1">
+                        <label for="cover" class="label dark:text-white! capitalize">{{'products.forms.Product cover image' | translate}}</label>
+                        <span class="text-red-600 font-medium">*</span>
+                    </div>
+
+                    <p-fileUpload
+                        id="cover"
+                        mode="basic"
+                        name="cover"
+                        accept="image/jpeg,image/jpg,image/png"
+                        [multiple]="false"
+                        [maxFileSize]="5000000"
+                        [chooseLabel]="'products.forms.Upload file' | translate"
+                        chooseIcon="pi pi-upload"
+                        [styleClass]="form.get('cover')?.touched! && form.get('cover')?.hasError('required')! ? 'custom-upload custom-upload-error' : 'custom-upload'"
+                        (onSelect)="onCoverSelect($event)"
+                    />
+
+                    @if (form.get('cover')?.touched! && form.get('cover')?.hasError('required')!) {
+                        <div class="error">
+                            {{'products.forms.validation.Product cover is required' | translate}}
+                        </div>
+                    }
+                </div>
+
+                <div>
+                    <div class="flex gap-1">
+                        <label for="gallery" class="label dark:text-white! capitalize">{{'products.forms.Product gallery' | translate}}</label>
+                        <span class="text-red-600 font-medium">*</span>
+                    </div>
+
+                    <p-fileUpload
+                        id="gallery"
+                        mode="basic"
+                        name="gallery"
+                        accept="image/jpeg,image/png,image/gif,image/webp,"
+                        [multiple]="true"
+                        [maxFileSize]="5000000"
+                        [chooseLabel]="'products.forms.Upload files' | translate"
+                        chooseIcon="pi pi-upload"
+                        [styleClass]="form.get('gallery')?.touched! && form.get('gallery')?.hasError('required')! ? 'custom-upload custom-upload-error' : 'custom-upload'"
+                        (onSelect)="onGallerySelect($event)"
+                    />
+
+                    @if (form.get('gallery')?.touched! && form.get('gallery')?.hasError('required')!) {
+                        <div class="error">
+                            {{'products.forms.validation.Product gallery images are required' | translate}}
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="flex gap-1">
+                    <label for="category" class="label dark:text-white! capitalize">{{'products.forms.Category' | translate}}</label>
+                    <span class="text-red-600 font-medium">*</span>
+                </div>
+                <p-select 
+                    id="category"
+                    [options]="categories()" 
+                    dataKey="id"
+                    optionValue="id"
+                    optionLabel="title"
+                    formControlName="categoryId"
+                    [placeholder]="'products.forms.Select an option' | translate" 
+                    [virtualScroll]="true" 
+                    [virtualScrollItemSize]="32" 
+                    [invalid]="form.get('categoryId')?.touched! && form.get('categoryId')?.hasError('required')!"
+                    variant="filled"
+                    class="w-full my-2 bg-transparent!" 
+                />
+
+                @if (form.get('categoryId')?.touched! && form.get('categoryId')?.hasError('required')!) {
+                    <div class="error">
+                        {{'products.forms.validation.Please select a category for the product' | translate}}
+                    </div>
+                }
+            </div>
+
+            <div class="mb-4">
+                <div class="flex gap-1">
+                    <label for="occasion" class="label dark:text-white! capitalize">{{'products.forms.Occasion' | translate}}</label>
+                    <span class="text-red-600 font-medium">*</span>
+                </div>
+
+                <p-multiselect 
+                    id="occasion"
+                    [options]="occasions()" 
+                    dataKey="id"
+                    optionValue="id"
+                    optionLabel="title"
+                    formControlName="occasionIds"
+                    [placeholder]="'products.forms.Select an option' | translate" 
+                    [virtualScroll]="true" 
+                    [virtualScrollItemSize]="32" 
+                    [invalid]="form.get('occasionIds')?.touched! && form.get('occasionIds')?.hasError('required')!"
+                    /* [maxSelectedLabels]="3"  */
+                    variant="filled"
+                    class="w-full my-2 bg-transparent!"
+                />
+
+                @if (form.get('occasionIds')?.touched! && form.get('occasionIds')?.hasError('required')!) {
+                    <div class="error">
+                        {{'products.forms.validation.Please select a occasion for the product' | translate}}
+                    </div>
+                }
+            </div>
+
+            <lib-button 
+                type="submit"
+                [disabled]="formSubmited() || form.invalid"
+                [loading]="formSubmited()"
+                [text]="`products.${productId() ? 'update' : 'Add'} Product` | translate"
+                styleClass="text-white dark:text-black bg-primary px-3 py-2 lg:px-6 rounded-lg text-sm lg:text-lg w-full mt-42 disabled:bg-zinc-500!">
+            </lib-button>
+        </div>
+    </form>
+</div>

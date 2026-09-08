@@ -1,0 +1,36 @@
+.label {
+    font-family: var(--lib-font-family, system-ui, -apple-system, sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--lib-color-label, #333);
+}
+
+.error {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--lib-color-error, #d32f2f);
+}
+
+:host ::ng-deep .custom-upload {
+    width: 100%;
+
+    p-button {
+        width: 100%;
+    }
+
+    .p-button {
+        width: 100%;
+        justify-content: flex-end;
+        border: 1px solid var(--p-content-border-color);
+        background: transparent;
+        color: #d9534f;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+    }
+
+    &.custom-upload-error {
+        .p-button {
+            border-color: var(--p-select-invalid-placeholder-color);
+        }
+    }
+}
