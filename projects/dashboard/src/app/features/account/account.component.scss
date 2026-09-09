@@ -1,0 +1,225 @@
+.account-page {
+  background: #FAFAFA;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-align: start;
+}
+
+.account-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.photo-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.photo-wrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 9999px;
+  border: 1px solid #E4E4E7;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-overlay {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background: #A6252A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  transition: transform 0.15s ease;
+}
+
+.photo-overlay:hover {
+  transform: scale(1.1);
+}
+
+.photo-overlay .pi-camera {
+  color: #ffffff;
+  font-size: 0.85rem;
+}
+
+.photo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.photo-input {
+  display: none;
+}
+
+.upload-hint {
+  font-size: 0.8rem;
+  color: #71717A;
+  max-width: 320px;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field.full-width {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.field-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #3F3F46;
+}
+
+.field-input {
+  height: 48px;
+  border: 1px solid #E4E4E7;
+  border-radius: 10px;
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  color: #18181B;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.field-input:focus {
+  border-color: #A6252A;
+}
+
+.field-input.disabled,
+.field-input:disabled {
+  background: #F4F4F5;
+  color: #71717A;
+  cursor: not-allowed;
+}
+
+.actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.actions-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: #DC2626;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #3F3F46;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.btn-save {
+  background: #A6252A;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-save:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  color: #71717A;
+}
+
+@media (max-width: 768px) {
+  .account-page {
+    padding: 1rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-save {
+    width: 100%;
+  }
+}
