@@ -1,4 +1,23 @@
 {
+  "common": {
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "yes,delete": "Yes, Delete",
+      "no": "No",
+      "action": "action"
+    },
+    "messages": {
+      "search": "Search...",
+      "Are you sure you want to delete it?": "Are you sure you want to delete it?",
+      "added successfully": "Added successfully",
+      "updated successfully": "Updated successfully",
+      "deleted successfully": "Deleted successfully"
+    },
+    "currency": {
+      "EGP": "EGP"
+    }
+  },
   "sidebar": {
     "previewWebsite": "Preview website",
     "nav": {
@@ -11,6 +30,52 @@
     "userMenu": {
       "profile": "Profile",
       "logout": "Logout"
+    }
+  },
+  "products": {
+    "all products": "all products",
+    "add a new product": "add a new product",
+    "Add Product": "Add Product",
+    "update Product": "Update Product",
+    "list": {
+      "name": "name",
+      "price": "price",
+      "stock": "stock",
+      "rating": "rating"
+    },
+    "forms": {
+      "Title": "Title",
+      "Enter product title": "Enter product title",
+      "Description": "Description",
+      "Enter product description": "Enter product description",
+      "Price": "Price",
+      "Price Example": "Example: 5000",
+      "Discount": "Discount",
+      "Discount Example": "Example: 5",
+      "Price after discount": "Price after discount",
+      "after Discount Example": "Example: 5",
+      "Quantity": "Quantity",
+      "Quantity Example": "Example: 200",
+      "Product cover image": "Product cover image",
+      "Product gallery": "Product gallery",
+      "Category": "Category",
+      "Occasion": "Occasion",
+      "Select an option": "Select an option",
+      "Upload file": "Upload file",
+      "Upload files": "Upload files",
+      "validation": {
+        "Product title is required": "Product title is required",
+        "Product description is required": "Product description is required",
+        "Product price is required": "Product price is required",
+        "Please enter a valid price": "Please enter a valid price",
+        "Please enter a valid discount": "Please enter a valid discount",
+        "Product quantity is required": "Product quantity is required",
+        "Please enter a valid quantity": "Please enter a valid quantity",
+        "Product cover is required": "Product cover is required",
+        "Product gallery images are required": "Product gallery images are required",
+        "Please select a category for the product": "Please select a category for the product",
+        "Please select a occasion for the product": "Please select a occasion for the product"
+      }
     }
   }
 }

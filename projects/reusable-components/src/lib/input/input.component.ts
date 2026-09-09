@@ -3,6 +3,7 @@ import {
   forwardRef,
   inject,
   Injector,
+  input,
   Input,
   OnInit,
   output,
@@ -44,6 +45,10 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     this.isDisabled.set(value);
   }
   @Input() isReadonly: boolean = false;
+
+  required = input<boolean>(false)
+  min = input<number | null>(null);
+  max = input<number | null>(null);
 
   icons = icons;
   value = signal('');
@@ -102,8 +107,8 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     return `common.validation.${firstErrorKey}`;
   }
 
-  private onChange: (value: string) => void = () => {};
-  private onTouched: () => void = () => {};
+  private onChange: (value: string) => void = () => { };
+  private onTouched: () => void = () => { };
 
   writeValue(val: string | null): void {
     this.value.set(val ?? '');
