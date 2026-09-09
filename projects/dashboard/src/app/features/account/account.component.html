@@ -1,0 +1,123 @@
+<p-toast></p-toast>
+
+<div class="account-page">
+  <h1 class="page-title">Account Settings</h1>
+
+  @if (isLoading()) {
+    <div class="loading">Loading...</div>
+  } @else {
+
+  <div class="account-card">
+
+    <!-- Photo Section -->
+    <div class="photo-section">
+      <div class="photo-wrapper" (click)="photoInput.click()">
+        <img
+          class="profile-photo"
+          [src]="photoPreview() || 'assets/default-avatar.png'"
+          alt="Profile photo"
+        />
+        <div class="photo-overlay">
+          <i class="pi pi-camera"></i>
+        </div>
+      </div>
+      <div class="photo-info">
+        <p class="upload-hint">
+          You can upload a .jpg, .png, or .gif photo with
+          max size of 5MB.
+        </p>
+      </div>
+      <input
+        #photoInput
+        type="file"
+        accept=".jpg,.jpeg,.png,.gif"
+        class="photo-input"
+        (change)="onPhotoChange($event)"
+      />
+    </div>
+
+    <!-- Form Fields -->
+    <div class="form-fields">
+
+      <!-- First Name + Last Name in same row -->
+      <div class="form-row">
+        <div class="form-field">
+          <label class="field-label">First Name</label>
+          <input
+            class="field-input"
+            type="text"
+            [value]="firstName()"
+            (input)="firstName.set($any($event.target).value)"
+            placeholder="First name"
+          />
+        </div>
+        <div class="form-field">
+          <label class="field-label">Last Name</label>
+          <input
+            class="field-input"
+            type="text"
+            [value]="lastName()"
+            (input)="lastName.set($any($event.target).value)"
+            placeholder="Last name"
+          />
+        </div>
+      </div>
+
+      <!-- Email - full width, disabled -->
+      <div class="form-field full-width">
+        <label class="field-label">Email</label>
+        <input
+          class="field-input disabled"
+          type="email"
+          [value]="profile()?.email ?? ''"
+          disabled
+        />
+      </div>
+
+      <!-- Phone - full width -->
+      <div class="form-field full-width">
+        <label class="field-label">Phone</label>
+        <input
+          class="field-input"
+          type="tel"
+          [value]="phone()"
+          (input)="phone.set($any($event.target).value)"
+          placeholder="Phone number"
+        />
+      </div>
+
+      <!-- Gender - full width, always disabled -->
+      <div class="form-field full-width">
+        <label class="field-label">Gender</label>
+        <input
+          class="field-input disabled"
+          type="text"
+          [value]="profile()?.gender ?? ''"
+          disabled
+        />
+      </div>
+
+    </div>
+
+    <!-- Actions Row -->
+    <div class="actions-row">
+      <div class="actions-left">
+        <button class="btn-delete" (click)="deleteAccount()">
+          Delete my account
+        </button>
+        <button class="btn-link" (click)="goToChangePassword()">
+          Change Password
+        </button>
+      </div>
+      <button
+        class="btn-save"
+        (click)="saveChanges()"
+        [disabled]="isSaving() || !hasChanges()">
+        {{ isSaving() ? 'Saving...' : 'Save Changes' }}
+      </button>
+    </div>
+
+  </div>
+
+  }
+</div>

@@ -1,5 +1,5 @@
 import { Component, computed, inject, input, model } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { DrawerModule } from 'primeng/drawer';
 import { MenuModule } from 'primeng/menu';
 import type { MenuItem } from 'primeng/api';
@@ -16,7 +16,8 @@ import { AuthService } from 'auth-library';
 })
 export class Sidebar {
   private readonly _translateService = inject(TranslateService);
-  private readonly _authService = inject(AuthService)
+  private readonly _authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   readonly items = input<AppSidebarItem[]>([]);
 
@@ -38,14 +39,15 @@ export class Sidebar {
     return [
       {
         label: this._translateService.instant('sidebar.userMenu.profile'),
-        icon: 'pi pi-user'
+        icon: 'pi pi-user',
+        command: () => this.navigateToAccount(),
       },
       {
         label: this._translateService.instant('sidebar.userMenu.logout'),
         icon: 'pi pi-sign-out',
         command: () => {
-          this.logout()
-        }
+          this.logout();
+        },
       },
     ];
   });
@@ -56,10 +58,14 @@ export class Sidebar {
     }
   }
 
+  navigateToAccount(): void {
+    this.router.navigate(['/account']);
+  }
+
   logout() {
-    this._authService.logout(true)
-    const authUrl = new URL('/login', environment.hostUrl)
-    authUrl.searchParams.set('callbackurl', window.location.href)
+    this._authService.logout(true);
+    const authUrl = new URL('/login', environment.hostUrl);
+    authUrl.searchParams.set('callbackurl', window.location.href);
 
     window.location.href = authUrl.toString();
   }
