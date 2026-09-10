@@ -1,0 +1,60 @@
+<app-form-field-wrapper [field]="field()" [control]="control()">
+  <div class="file-field">
+    <input
+      #fileInput
+      type="file"
+      class="file-input"
+      [id]="field().name"
+      [accept]="field().acceptedFileTypes?.join(',')"
+      [disabled]="control().disabled"
+      [attr.aria-describedby]="field().name + '-hint'"
+      (change)="onFileSelected($event)"
+    />
+
+    @if (field().acceptedFileTypes?.length || field().maxFileSize) {
+      <p [id]="field().name + '-hint'">
+        @if (field().acceptedFileTypes?.length) {
+          Accepted formats:
+          {{ field().acceptedFileTypes?.join(', ') }}
+        }
+
+        @if (field().maxFileSize) {
+          Maximum size:
+          {{ field().maxFileSize! / 1024 / 1024 }} MB
+        }
+      </p>
+    }
+
+    @if (uploadError()) {
+      <p class="file-error" role="alert">
+        {{ field().errorMessages?.[uploadError()!] ?? 'Invalid value' }}
+      </p>
+    }
+
+    @if (selectedFile()) {
+      @if (previewUrl()) {
+        <div class="image-preview">
+          <img [src]="previewUrl()" [alt]="field().label + ' preview'" />
+        </div>
+      } @else {
+        <div class="file-info">
+          <span>
+            {{ selectedFile()?.name }}
+          </span>
+        </div>
+      }
+
+      <div class="file-actions">
+        <button type="button" [disabled]="control().disabled" (click)="fileInput.click()">
+          Replace
+        </button>
+
+        <button type="button" [disabled]="control().disabled" (click)="removeFile()">Remove</button>
+      </div>
+    } @else {
+      <button type="button" [disabled]="control().disabled" (click)="fileInput.click()">
+        Choose File
+      </button>
+    }
+  </div>
+</app-form-field-wrapper>

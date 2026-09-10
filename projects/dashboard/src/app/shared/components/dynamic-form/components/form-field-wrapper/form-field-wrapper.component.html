@@ -1,0 +1,19 @@
+<div class="field-wrapper">
+  @if (field().label) {
+    <label [for]="field().name">
+      {{ field().label }}
+
+      @if (field().validators?.required) {
+        <span aria-hidden="true">*</span>
+      }
+    </label>
+  }
+
+  <ng-content />
+
+  @if (errorMessage) {
+    <p class="field-error" [id]="field().name + '-error'" role="alert">
+      {{ errorMessage }}
+    </p>
+  }
+</div>

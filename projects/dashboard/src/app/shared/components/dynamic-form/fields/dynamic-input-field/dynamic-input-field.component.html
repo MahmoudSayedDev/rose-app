@@ -1,0 +1,12 @@
+<app-form-field-wrapper [field]="field()" [control]="control()">
+  <lib-input
+    [inputId]="field().name"
+    [label]="''"
+    [placeholder]="field().placeholder ?? ''"
+    [type]="inputType()"
+    [formControl]="control()"
+    [required]="field().validators?.required ?? false"
+    [customErrorMessages]="field().errorMessages ?? {}"
+    [showErrors]="false"
+  />
+</app-form-field-wrapper>

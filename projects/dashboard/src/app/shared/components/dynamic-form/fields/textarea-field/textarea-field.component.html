@@ -1,0 +1,12 @@
+<app-form-field-wrapper [field]="field()" [control]="control()">
+  <textarea
+    [id]="field().name"
+    [formControl]="control()"
+    [placeholder]="field().placeholder ?? ''"
+    [readonly]="field().readonly ?? false"
+    [attr.aria-invalid]="control().invalid && control().touched"
+    [attr.aria-describedby]="
+      control().invalid && control().touched ? field().name + '-error' : null
+    "
+  ></textarea>
+</app-form-field-wrapper>
