@@ -1,30 +1,38 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DynamicFieldConfig } from '../../models/dynamic-field-config.interface';
+import { FieldErrorComponent } from 'reusable-components';
 
 @Component({
   selector: 'app-form-field-wrapper',
+  imports: [FieldErrorComponent],
   templateUrl: './form-field-wrapper.component.html',
 })
 export class FormFieldWrapperComponent {
   readonly field = input.required<DynamicFieldConfig>();
   readonly control = input.required<FormControl>();
 
-  get errorMessage(): string | null {
-    const control = this.control();
+  labelClasses = computed(() =>
+    this.control().touched && this.control().invalid
+      ? 'text-sm font-medium text-red-600'
+      : 'text-sm font-medium',
+  );
 
-    if (!control.invalid || !control.touched) {
-      return null;
-    }
+  // get errorMessage(): string | null {
+  //   const control = this.control();
 
-    const errors = control.errors;
+  //   if (!control.invalid || !control.touched) {
+  //     return null;
+  //   }
 
-    if (!errors) {
-      return null;
-    }
+  //   const errors = control.errors;
 
-    const firstError = Object.keys(errors)[0];
+  //   if (!errors) {
+  //     return null;
+  //   }
 
-    return this.field().errorMessages?.[firstError] ?? `Invalid value`;
-  }
+  //   const firstError = Object.keys(errors)[0];
+
+  //   return this.field().errorMessages?.[firstError] ?? `Invalid value`;
+  // }
 }

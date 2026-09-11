@@ -46,7 +46,7 @@ export class DynamicFormComponent {
     this.form = new FormGroup(controls);
   }
 
-  controlFor(field: DynamicFieldConfig): FormControl {
+  getControl(field: DynamicFieldConfig): FormControl {
     return this.form.get(field.name) as FormControl;
   }
 

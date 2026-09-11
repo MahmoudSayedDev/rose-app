@@ -1,7 +1,9 @@
 <div class="lib-input">
   @if (label) {
     <div class="flex gap-1">
-      <label [for]="inputId" class="lib-input__label dark:text-white! capitalize">{{ label }}</label>
+      <label [for]="inputId" class="lib-input__label dark:text-white! capitalize">{{
+        label
+      }}</label>
       @if (required()) {
         <span class="text-red-600 font-medium">*</span>
       }
@@ -27,16 +29,10 @@
       [max]="max()"
       [style.padding-inline-end]="type === 'password' ? '3rem' : null"
       [attr.aria-invalid]="
-        ngControl?.control?.invalid &&
-        ngControl?.control?.touched
-          ? 'true'
-          : null
+        ngControl?.control?.invalid && ngControl?.control?.touched ? 'true' : null
       "
       [attr.aria-describedby]="
-        ngControl?.control?.invalid &&
-        ngControl?.control?.touched
-          ? inputId + '-error'
-          : null
+        ngControl?.control?.invalid && ngControl?.control?.touched ? inputId + '-error' : null
       "
     />
 
@@ -67,6 +63,8 @@
   </div>
 
   @if (showErrors() && errorMessage) {
-    <p [id]="inputId + '-error'" class="lib-input__error">{{ errorMessage | translate }}</p>
+    <p [id]="inputId + '-error'" class="lib-input__error">
+      {{ errorMessage | translate: { field: label || 'This field' } }}
+    </p>
   }
 </div>

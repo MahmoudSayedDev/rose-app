@@ -77,5 +77,14 @@
         "Please select a occasion for the product": "Please select a occasion for the product"
       }
     }
+  },
+  "validation": {
+    "required": "{{field}} is required",
+    "email": "Please enter a valid email.",
+    "minlength": "{{field}} must be at least {{requiredLength}} characters (currently {{actualLength}}).",
+    "maxlength": "{{field}} must be no more than {{requiredLength}} characters (currently {{actualLength}}).",
+    "min": "{{field}} must be {{min}} or greater.",
+    "max": "{{field}} must be {{max}} or less.",
+    "pattern": "The format entered for {{field}} isn't valid."
   }
 }

@@ -49,6 +49,7 @@ export class TestComponent {
       placeholder: 'Tell us about yourself',
       validators: {
         maxLength: 200,
+        required: true
       },
     },
 

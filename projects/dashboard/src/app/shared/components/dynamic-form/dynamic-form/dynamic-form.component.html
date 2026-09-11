@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
   @for (field of fields(); track field.name) {
-    <app-dynamic-field-host [field]="field" [control]="controlFor(field)" />
+    <app-dynamic-field-host [field]="field" [control]="getControl(field)" />
   }
 
   <button type="submit">

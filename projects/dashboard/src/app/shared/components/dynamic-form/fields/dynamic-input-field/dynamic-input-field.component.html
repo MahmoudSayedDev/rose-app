@@ -1,12 +1,14 @@
 <app-form-field-wrapper [field]="field()" [control]="control()">
   <lib-input
+    /* [label]="field().label" */
     [inputId]="field().name"
-    [label]="''"
     [placeholder]="field().placeholder ?? ''"
     [type]="inputType()"
     [formControl]="control()"
-    [required]="field().validators?.required ?? false"
-    [customErrorMessages]="field().errorMessages ?? {}"
+    [valid]="control().touched && control().invalid"
+    [customErrorMessages]="{
+      required: 'validation.required',
+    }"
     [showErrors]="false"
   />
 </app-form-field-wrapper>
