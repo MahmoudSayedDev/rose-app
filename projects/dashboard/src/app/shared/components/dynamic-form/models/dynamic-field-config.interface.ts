@@ -1,8 +1,8 @@
+import { FieldErrorMessages } from 'reusable-components';
 import { FieldType } from './field-type';
-import { SelectOption } from './select-option.interface';
 import { FieldValidators } from './field-validators.interface';
 
-export interface DynamicFieldConfig {
+export interface DynamicFieldConfig<TOption = unknown> {
   name: string;
   type: FieldType;
   label: string;
@@ -11,8 +11,12 @@ export interface DynamicFieldConfig {
   disabled?: boolean;
   readonly?: boolean;
   validators?: FieldValidators;
-  errorMessages?: Record<string, string>;
-  options?: SelectOption[];
+  errorMessages?: FieldErrorMessages;
+  options?: TOption[];
+  dataKey?: string,
+  optionLabel?: string,
+  optionValue?: string,
   acceptedFileTypes?: string[];
   maxFileSize?: number;
+  multiple?: boolean
 }

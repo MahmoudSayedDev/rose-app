@@ -3,10 +3,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormFieldWrapperComponent } from '../../components/form-field-wrapper/form-field-wrapper.component';
 import { BaseFieldComponent } from '../../base/base-field.component';
 import { TextareaModule } from 'primeng/textarea';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-textarea-field',
-  imports: [ReactiveFormsModule, FormFieldWrapperComponent, TextareaModule],
+  imports: [ReactiveFormsModule, FormFieldWrapperComponent, TextareaModule, TranslatePipe],
   templateUrl: './textarea-field.component.html',
 })
 export class TextareaFieldComponent extends BaseFieldComponent {}

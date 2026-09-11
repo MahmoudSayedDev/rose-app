@@ -1,6 +1,6 @@
 import { ValidationErrors } from '@angular/forms';
 
-export type FieldErrorMessage = string | ((errorValue: any, label?: string) => string);
+export type FieldErrorMessage = string | ((errorValue: unknown) => string);
 
 export interface FieldErrorMessages {
   [errorKey: string]: FieldErrorMessage;

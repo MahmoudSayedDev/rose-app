@@ -1,29 +1,39 @@
 <app-form-field-wrapper [field]="field()" [control]="control()">
-  <!-- <p-select
-    [options]="field().options"
-    [(ngModel)]="selectedCity"
-    optionLabel="name"
-    placeholder="Select a City"
-    fluid
-  /> -->
-  <select
-    [id]="field().name"
-    [formControl]="control()"
-    [attr.aria-invalid]="control().invalid && control().touched"
-    [attr.aria-describedby]="
-      control().invalid && control().touched ? field().name + '-error' : null
-    "
-  >
-    @if (field().placeholder) {
-      <option [ngValue]="null" disabled hidden>
-        {{ field().placeholder }}
-      </option>
-    }
+  @if (field().type === 'multiselect') {
+    <p-multiselect
+      [id]="field().name"
+      [options]="field().options" 
+      [dataKey]="field().dataKey || 'id'"
+      [optionValue]="field().optionValue || 'id'"
+      [optionLabel]="field().optionLabel || 'title'"
+      [formControl]="control()"
+      [placeholder]="(field().placeholder | translate) ?? ''" 
+      [virtualScroll]="true" 
+      [virtualScrollItemSize]="32" 
+      [showClear]="true"
+      [invalid]="control().invalid && control().touched ? field().name + '-error' : null"
+      variant="filled"
+      class="w-full rounded-lg! disabled:bg-[#e2e8f0]! dark:disabled:bg-[#3f3f46]!" 
+    />
+  } 
 
-    @for (option of field().options ?? []; track option.value) {
-      <option [ngValue]="option.value">
-        {{ option.label }}
-      </option>
-    }
-  </select>
+  @if (field().type === 'select') {
+    <p-select
+      [id]="field().name"
+      [options]="field().options" 
+      [dataKey]="field().dataKey || 'id'"
+      [optionValue]="field().optionValue || 'id'"
+      [optionLabel]="field().optionLabel || 'title'"
+      [filter]="true"
+      [filterBy]="field().optionLabel"
+      [formControl]="control()"
+      [placeholder]="(field().placeholder | translate) ?? ''" 
+      [virtualScroll]="true" 
+      [virtualScrollItemSize]="32" 
+      [showClear]="true"
+      [invalid]="control().invalid && control().touched ? field().name + '-error' : null"
+      variant="filled"
+      class="w-full rounded-lg! disabled:bg-[#e2e8f0]! dark:disabled:bg-[#3f3f46]!" 
+    />
+  } 
 </app-form-field-wrapper>

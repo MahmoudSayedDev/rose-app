@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DynamicFieldConfig } from '../models/dynamic-field-config.interface';
 import { DynamicFieldHostComponent } from '../fields/dynamic-field-host/dynamic-field-host.component';
 import { createValidators } from '../utils/validator-factory.util';
+import { DynamicFieldGroup, DynamicFormItem } from '../models/dynamic-field-group.interface';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -11,9 +12,7 @@ import { createValidators } from '../utils/validator-factory.util';
   templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent {
-  readonly fields = input.required<DynamicFieldConfig[]>();
-  readonly submitLabel = input('Submit');
-
+  readonly fields = input.required<DynamicFormItem[]>();
   readonly submitted = output<Record<string, unknown>>();
 
   form = new FormGroup({});
@@ -24,8 +23,9 @@ export class DynamicFormComponent {
     });
   }
 
-  private buildForm(fields: DynamicFieldConfig[]): void {
+  private buildForm(items: DynamicFormItem[]): void {
     const controls: Record<string, FormControl> = {};
+    const fields = this.getAllFields(items);
 
     for (const field of fields) {
       if (controls[field.name]) {
@@ -46,8 +46,20 @@ export class DynamicFormComponent {
     this.form = new FormGroup(controls);
   }
 
+  private getAllFields(items: DynamicFormItem[],): DynamicFieldConfig[] {
+    return items.flatMap((item) =>
+      this.isGroup(item)
+        ? this.getAllFields(item.fields)
+        : [item],
+    );
+  }
+
   getControl(field: DynamicFieldConfig): FormControl {
     return this.form.get(field.name) as FormControl;
+  }
+
+  isGroup(item: DynamicFormItem): item is DynamicFieldGroup {
+    return 'fields' in item;
   }
 
   submit(): void {

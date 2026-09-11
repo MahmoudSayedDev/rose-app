@@ -13,5 +13,6 @@ export const FIELD_COMPONENT_REGISTRY: Partial<Record<FieldType, Type<unknown>>>
 
   textarea: TextareaFieldComponent,
   select: SelectFieldComponent,
+  multiselect: SelectFieldComponent,
   file: FileFieldComponent,
 };

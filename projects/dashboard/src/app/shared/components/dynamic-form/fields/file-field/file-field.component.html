@@ -1,26 +1,34 @@
 <app-form-field-wrapper [field]="field()" [control]="control()">
   <div class="file-field">
-    <input
-      #fileInput
-      type="file"
-      class="file-input"
+
+    <p-fileUpload
+      #fileUpload
       [id]="field().name"
+      mode="basic"
+      [name]="field().name"
       [accept]="field().acceptedFileTypes?.join(',')"
+      [multiple]="field().multiple || false"
+      [maxFileSize]="field().maxFileSize ?? 0"
+      [chooseLabel]="(field().multiple ? 'products.forms.Upload files' : 'products.forms.Upload file') | translate"
+      chooseIcon="pi pi-upload"
       [disabled]="control().disabled"
-      [attr.aria-describedby]="field().name + '-hint'"
-      (change)="onFileSelected($event)"
+      [showCancelButton]="false"
+      [showUploadButton]="false"
+      [customUpload]="true"
+      [styleClass]="control().touched && control().invalid? 'custom-upload custom-upload-error': 'custom-upload'"
+      (onSelect)="onFileSelected($event)"
     />
 
     @if (field().acceptedFileTypes?.length || field().maxFileSize) {
       <p [id]="field().name + '-hint'">
         @if (field().acceptedFileTypes?.length) {
-          Accepted formats:
+          {{'common.validation.Accepted formats' | translate}}:
           {{ field().acceptedFileTypes?.join(', ') }}
         }
-
+        |
         @if (field().maxFileSize) {
-          Maximum size:
-          {{ field().maxFileSize! / 1024 / 1024 }} MB
+          {{'common.validation.Maximum size' | translate}}:
+          {{ field().maxFileSize! / 1024 / 1024 }} {{'common.validation.MB' | translate}}
         }
       </p>
     }
@@ -31,30 +39,33 @@
       </p>
     }
 
-    @if (selectedFile()) {
-      @if (previewUrl()) {
-        <div class="image-preview">
-          <img [src]="previewUrl()" [alt]="field().label + ' preview'" />
-        </div>
-      } @else {
-        <div class="file-info">
-          <span>
-            {{ selectedFile()?.name }}
-          </span>
-        </div>
-      }
+    @if (selectedFiles().length) {
+      <div class="files-preview">
+        <div class="file-item flex items-center gap-3 overflow-x-auto p-6">
+          @for (file of selectedFiles(); track file.name) {
+            @if (file.type.startsWith('image/')) {
+              <div class=" relative">
+                <div class="w-25 rounded-xl overflow-hidden shadow">
+                  <img
+                    class="w-full"
+                    [src]="previewUrls()[$index]"
+                    [alt]="file.name"
+                  />
+                </div>
 
-      <div class="file-actions">
-        <button type="button" [disabled]="control().disabled" (click)="fileInput.click()">
-          Replace
-        </button>
-
-        <button type="button" [disabled]="control().disabled" (click)="removeFile()">Remove</button>
+                <button type="button" class="bg-primary flex justify-center items-center p-1.5 rounded-full text-white absolute -top-3 -inset-s-3 cursor-pointer" (click)="removeFile($index)">
+                  <i class="pi pi-times" style="font-size: .7rem;"></i>
+                </button>
+              </div>
+            } @else {
+              <div class="file-info">
+                {{ file.name }}
+              </div>
+            }
+          }
+        </div>
       </div>
-    } @else {
-      <button type="button" [disabled]="control().disabled" (click)="fileInput.click()">
-        Choose File
-      </button>
     }
+
   </div>
 </app-form-field-wrapper>

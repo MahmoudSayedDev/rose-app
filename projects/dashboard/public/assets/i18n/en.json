@@ -14,6 +14,19 @@
       "updated successfully": "Updated successfully",
       "deleted successfully": "Deleted successfully"
     },
+    "validation": {
+      "required": "This field is required",
+      "requiredTrue": "This field must be accepted",
+      "email": "Please enter a valid email",
+      "minlength": "Minimum length is {{requiredLength}} characters",
+      "maxlength": "Maximum length is {{requiredLength}} characters",
+      "min": "Minimum value is {{min}}",
+      "max": "Maximum value is {{max}}",
+      "pattern": "Invalid format",
+      "Accepted formats": "Accepted formats",
+      "Maximum size": "Maximum size",
+      "MB": "MB"
+    },
     "currency": {
       "EGP": "EGP"
     }
@@ -77,14 +90,5 @@
         "Please select a occasion for the product": "Please select a occasion for the product"
       }
     }
-  },
-  "validation": {
-    "required": "{{field}} is required",
-    "email": "Please enter a valid email.",
-    "minlength": "{{field}} must be at least {{requiredLength}} characters (currently {{actualLength}}).",
-    "maxlength": "{{field}} must be no more than {{requiredLength}} characters (currently {{actualLength}}).",
-    "min": "{{field}} must be {{min}} or greater.",
-    "max": "{{field}} must be {{max}} or less.",
-    "pattern": "The format entered for {{field}} isn't valid."
   }
 }

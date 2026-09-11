@@ -2,9 +2,9 @@
   @if (field().label) {
     <label
       [for]="field().name"
-      [class]="labelClasses()"
+      class="label mb-2 block dark:text-white! capitalize"
     >
-      {{ field().label }}
+      {{ field().label | translate }}
 
       @if (field().validators?.required) {
         <span class="text-red-600" aria-hidden="true">*</span>
@@ -16,14 +16,6 @@
 
   <lib-field-error
     [control]="control()"
-    [label]="field().label"
-    /* [customMessages]="{
-      required: (e) => 'validation.required',
-    }" */
+    [customMessages]="field().errorMessages"
   ></lib-field-error>
-  <!-- @if (errorMessage) {
-    <p class="field-error" [id]="field().name + '-error'" role="alert">
-      {{ errorMessage | translate }}
-    </p>
-  } -->
 </div>

@@ -38,43 +38,6 @@ export const appConfig: ApplicationConfig = {
     {
       provide: AUTH_API_URL,
       useValue: environment.apiUrl,
-    },
-    {
-      provide: FIELD_ERROR_MESSAGES,
-      useFactory: (): FieldErrorMessages => {
-        const translate = inject(TranslateService);
-
-        return {
-          required: (_e, label) =>
-            translate.instant('validation.required', { field: label || 'This field' }),
-          email: (_e, label) =>
-            translate.instant('validation.email', { field: label || 'email' }),
-          minlength: (e, label) =>
-            translate.instant('validation.minlength', {
-              field: label || 'This field',
-              requiredLength: e.requiredLength,
-              actualLength: e.actualLength,
-            }),
-          maxlength: (e, label) =>
-            translate.instant('validation.maxlength', {
-              field: label || 'This field',
-              requiredLength: e.requiredLength,
-              actualLength: e.actualLength,
-            }),
-          min: (e, label) =>
-            translate.instant('validation.min', {
-              field: label || 'this field',
-              requiredLength: e.min,
-            }),
-          max: (e, label) =>
-            translate.instant('validation.max', {
-              field: label || 'this field',
-              requiredLength: e.max,
-            }),
-          pattern: (_e, label) =>
-            translate.instant('validation.pattern', { field: label || 'this field' }),
-        };
-      },
-    },
+    }
   ],
 };
