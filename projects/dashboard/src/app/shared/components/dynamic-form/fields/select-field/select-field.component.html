@@ -1,0 +1,39 @@
+<app-form-field-wrapper [field]="field()" [control]="control()">
+  @if (field().type === 'multiselect') {
+    <p-multiselect
+      [id]="field().name"
+      [options]="field().options" 
+      [dataKey]="field().dataKey || 'id'"
+      [optionValue]="field().optionValue || 'id'"
+      [optionLabel]="field().optionLabel || 'title'"
+      [formControl]="control()"
+      [placeholder]="(field().placeholder | translate) ?? ''" 
+      [virtualScroll]="true" 
+      [virtualScrollItemSize]="32" 
+      [showClear]="true"
+      [invalid]="control().invalid && control().touched ? field().name + '-error' : null"
+      variant="filled"
+      class="w-full rounded-lg! disabled:bg-[#e2e8f0]! dark:disabled:bg-[#3f3f46]!" 
+    />
+  } 
+
+  @if (field().type === 'select') {
+    <p-select
+      [id]="field().name"
+      [options]="field().options" 
+      [dataKey]="field().dataKey || 'id'"
+      [optionValue]="field().optionValue || 'id'"
+      [optionLabel]="field().optionLabel || 'title'"
+      [filter]="true"
+      [filterBy]="field().optionLabel"
+      [formControl]="control()"
+      [placeholder]="(field().placeholder | translate) ?? ''" 
+      [virtualScroll]="true" 
+      [virtualScrollItemSize]="32" 
+      [showClear]="true"
+      [invalid]="control().invalid && control().touched ? field().name + '-error' : null"
+      variant="filled"
+      class="w-full rounded-lg! disabled:bg-[#e2e8f0]! dark:disabled:bg-[#3f3f46]!" 
+    />
+  } 
+</app-form-field-wrapper>

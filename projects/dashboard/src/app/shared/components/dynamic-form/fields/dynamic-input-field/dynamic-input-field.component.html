@@ -1,0 +1,15 @@
+<app-form-field-wrapper [field]="field()" [control]="control()">
+  <lib-input
+    /* [label]="field().label" */
+    [inputId]="field().name"
+    [placeholder]="(field().placeholder | translate) ?? ''"
+    [type]="inputType()"
+    [formControl]="control()"
+    [valid]="control().touched && control().invalid"
+    [customErrorMessages]="{
+      required: 'validation.required',
+    }"
+    [showErrors]="false",
+    styleClass="bg-transparent! rounded-lg!"
+  />
+</app-form-field-wrapper>
