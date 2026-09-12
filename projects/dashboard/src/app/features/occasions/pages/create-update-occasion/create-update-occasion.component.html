@@ -48,32 +48,6 @@
                 }
             </div>
 
-            <div class="mb-4">
-                <div class="flex gap-1">
-                    <label for="image" class="label dark:text-white! capitalize">{{'occasions.forms.Occasion image' | translate}}</label>
-                    <span class="text-red-600 font-medium">*</span>
-                </div>
-
-                <p-fileUpload
-                    id="image"
-                    mode="basic"
-                    name="image"
-                    accept="image/jpeg,image/jpg,image/png"
-                    [multiple]="false"
-                    [maxFileSize]="5000000"
-                    [chooseLabel]="'occasions.forms.Upload file' | translate"
-                    chooseIcon="pi pi-upload"
-                    [styleClass]="form.get('image')?.touched! && form.get('image')?.hasError('required')! ? 'custom-upload custom-upload-error' : 'custom-upload'"
-                    (onSelect)="onImageSelect($event)"
-                />
-
-                @if (form.get('image')?.touched! && form.get('image')?.hasError('required')!) {
-                    <div class="error">
-                        {{'occasions.forms.validation.Occasion image is required' | translate}}
-                    </div>
-                }
-            </div>
-
             <lib-button
                 type="submit"
                 [disabled]="formSubmited() || form.invalid"

@@ -109,12 +109,9 @@
       "Enter occasion title": "Enter occasion title",
       "Description": "Description",
       "Enter occasion description": "Enter occasion description",
-      "Occasion image": "Occasion image",
-      "Upload file": "Upload file",
       "validation": {
         "Occasion title is required": "Occasion title is required",
-        "Occasion description is required": "Occasion description is required",
-        "Occasion image is required": "Occasion image is required"
+        "Occasion description is required": "Occasion description is required"
       }
     }
   }

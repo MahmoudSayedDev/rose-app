@@ -108,12 +108,9 @@
       "Enter occasion title": "ادخل اسم المناسبة",
       "Description": "الوصف",
       "Enter occasion description": "ادخل وصف المناسبة",
-      "Occasion image": "صورة المناسبة",
-      "Upload file": "رفع ملف",
       "validation": {
         "Occasion title is required": "اسم المناسبة مطلوب",
-        "Occasion description is required": "وصف المناسبة مطلوب",
-        "Occasion image is required": "صورة المناسبة مطلوبة"
+        "Occasion description is required": "وصف المناسبة مطلوب"
       }
     }
   }

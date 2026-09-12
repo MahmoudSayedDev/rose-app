@@ -27,7 +27,6 @@ export interface Occasion {
 export interface CreateOccasionRequest {
   title: string;
   description: string;
-  image: string;
 }
 
 export interface DeleteOccasionResponse {

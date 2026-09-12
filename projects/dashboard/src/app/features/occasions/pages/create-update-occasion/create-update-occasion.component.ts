@@ -5,12 +5,10 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { InputComponent, ButtonComponent } from "reusable-components";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TextareaModule } from 'primeng/textarea';
-import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { OccasionsService } from '../../../products/services/occasions.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CreateOccasionRequest, Occasion, SingleOccasion } from '../../../products/models/occasion';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UploadService } from '../../../../shared/services/upload.service';
 
 
 @Component({
@@ -20,7 +18,6 @@ import { UploadService } from '../../../../shared/services/upload.service';
     InputComponent,
     TextareaModule,
     ButtonComponent,
-    FileUploadModule,
     ReactiveFormsModule
   ],
   templateUrl: './create-update-occasion.component.html',
@@ -35,7 +32,6 @@ export class CreateUpdateOccasionComponent extends AppComponentBase implements O
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _translateService = inject(TranslateService);
-  private readonly _uploadService = inject(UploadService);
 
   form!: FormGroup
 
@@ -52,7 +48,6 @@ export class CreateUpdateOccasionComponent extends AppComponentBase implements O
     this.form = this.fb.group({
       title: [data?.title || '', [Validators.required]],
       description: [data?.description || '', [Validators.required]],
-      image: [data?.image || '', [Validators.required]],
     })
   }
 
@@ -78,28 +73,6 @@ export class CreateUpdateOccasionComponent extends AppComponentBase implements O
         this.createForm(this.occasion())
       }
     })
-  }
-
-  onImageSelect(event: FileSelectEvent) {
-    const file = event.files[0];
-
-    if (file) {
-
-      this.formSubmited.set(true)
-
-      const formData = new FormData();
-      formData.append('image', file);
-
-      this._uploadService.upload(formData).subscribe({
-        next: (res) => {
-          this.form.get('image')?.setValue(res.payload.url)
-          this.form.get('image')?.markAsDirty()
-          this.formSubmited.set(false)
-        }, error: () => {
-          this.formSubmited.set(false)
-        }
-      })
-    }
   }
 
   afterSubmited(action?: string) {
