@@ -39,6 +39,21 @@ export const appRoutes: Route[] = [
         canActivate: [adminGuard]
       },
       {
+        path: 'occasions',
+        loadComponent: () => import('./features/occasions/occasions.component').then((c) => c.OccasionsComponent),
+        canActivate: [adminGuard]
+      },
+      {
+        path: 'occasions/create',
+        loadComponent: () => import('./features/occasions/pages/create-update-occasion/create-update-occasion.component').then((c) => c.CreateUpdateOccasionComponent),
+        canActivate: [adminGuard]
+      },
+      {
+        path: 'occasions/update/:id',
+        loadComponent: () => import('./features/occasions/pages/create-update-occasion/create-update-occasion.component').then((c) => c.CreateUpdateOccasionComponent),
+        canActivate: [adminGuard]
+      },
+      {
         path: '500',
         loadComponent: () => import('./features/errors/server-error/server-error.component').then((m) => m.ServerErrorComponent),
       },

@@ -94,5 +94,28 @@
         "Please select a occasion for the product": "Please select a occasion for the product"
       }
     }
+  },
+  "occasions": {
+    "all occasions": "all occasions",
+    "add a new occasion": "add a new occasion",
+    "Add Occasion": "Add Occasion",
+    "update Occasion": "Update Occasion",
+    "list": {
+      "name": "name",
+      "description": "description"
+    },
+    "forms": {
+      "Title": "Title",
+      "Enter occasion title": "Enter occasion title",
+      "Description": "Description",
+      "Enter occasion description": "Enter occasion description",
+      "Occasion image": "Occasion image",
+      "Upload file": "Upload file",
+      "validation": {
+        "Occasion title is required": "Occasion title is required",
+        "Occasion description is required": "Occasion description is required",
+        "Occasion image is required": "Occasion image is required"
+      }
+    }
   }
 }

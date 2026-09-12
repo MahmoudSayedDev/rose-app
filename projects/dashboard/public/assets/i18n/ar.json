@@ -93,5 +93,28 @@
         "Please select a occasion for the product": "يرجى اختيار مناسبة للمنتج"
       }
     }
+  },
+  "occasions": {
+    "all occasions": "كل المناسبات",
+    "add a new occasion": "إضافة مناسبة جديدة",
+    "Add Occasion": "إضافة مناسبة",
+    "update Occasion": "تعديل المناسبة",
+    "list": {
+      "name": "الاسم",
+      "description": "الوصف"
+    },
+    "forms": {
+      "Title": "اسم المناسبة",
+      "Enter occasion title": "ادخل اسم المناسبة",
+      "Description": "الوصف",
+      "Enter occasion description": "ادخل وصف المناسبة",
+      "Occasion image": "صورة المناسبة",
+      "Upload file": "رفع ملف",
+      "validation": {
+        "Occasion title is required": "اسم المناسبة مطلوب",
+        "Occasion description is required": "وصف المناسبة مطلوب",
+        "Occasion image is required": "صورة المناسبة مطلوبة"
+      }
+    }
   }
 }
