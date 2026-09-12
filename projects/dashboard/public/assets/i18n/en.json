@@ -12,5 +12,48 @@
       "profile": "Profile",
       "logout": "Logout"
     }
+  },
+  "account": {
+    "title": "Account Settings",
+    "loading": "Loading...",
+    "photoAlt": "Profile photo",
+    "uploadHint": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "First name",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "phonePlaceholder": "Phone number",
+    "gender": "Gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "deleteAccount": "Delete my account",
+    "deleteConfirm": "Are you sure you want to delete your account? This action cannot be undone.",
+    "changePassword": "Change Password",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "toast": {
+      "success": "Success",
+      "error": "Error",
+      "profileUpdated": "Profile updated successfully",
+      "profileUpdateFailed": "Failed to update profile. Please try again.",
+      "deleteFailed": "Failed to delete account. Please try again.",
+      "passwordChanged": "Password changed successfully",
+      "passwordChangeFailed": "Failed to change password. Please check your current password."
+    },
+    "changePasswordPage": {
+      "title": "Change Password",
+      "oldPassword": "Old Password",
+      "oldPasswordPlaceholder": "Enter your current password",
+      "newPassword": "New Password",
+      "newPasswordPlaceholder": "Enter your new password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm your new password",
+      "mismatch": "New password and confirm password do not match.",
+      "back": "Back",
+      "submit": "Change Password",
+      "submitting": "Changing..."
+    }
   }
 }

@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { UserProfile, UpdateProfileRequest } from '../../core/models/user.models';
@@ -16,7 +17,7 @@ import { UserService } from '../../core/services/user.service';
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [FormsModule, ToastModule],
+  imports: [FormsModule, ToastModule, TranslatePipe],
   providers: [MessageService],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss',
@@ -26,6 +27,7 @@ export class AccountComponent implements OnInit {
   private readonly userService = inject(UserService);
   private readonly router = inject(Router);
   private readonly messageService = inject(MessageService);
+  private readonly translate = inject(TranslateService);
 
   profile = signal<UserProfile | null>(null);
   isLoading = signal<boolean>(false);
@@ -90,16 +92,16 @@ export class AccountComponent implements OnInit {
         this.isSaving.set(false);
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: 'Profile updated successfully',
+          summary: this.translate.instant('account.toast.success'),
+          detail: this.translate.instant('account.toast.profileUpdated'),
         });
       },
       error: () => {
         this.isSaving.set(false);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to update profile. Please try again.',
+          summary: this.translate.instant('account.toast.error'),
+          detail: this.translate.instant('account.toast.profileUpdateFailed'),
         });
       },
     });
@@ -110,12 +112,7 @@ export class AccountComponent implements OnInit {
   }
 
   deleteAccount(): void {
-    if (
-      !confirm(
-        'Are you sure you want to delete your account? This action cannot be undone.'
-      )
-    )
-      return;
+    if (!confirm(this.translate.instant('account.deleteConfirm'))) return;
     this.userService.deleteAccount().subscribe({
       next: () => {
         this.router.navigate(['/login']);
@@ -123,8 +120,8 @@ export class AccountComponent implements OnInit {
       error: () => {
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to delete account. Please try again.',
+          summary: this.translate.instant('account.toast.error'),
+          detail: this.translate.instant('account.toast.deleteFailed'),
         });
       },
     });

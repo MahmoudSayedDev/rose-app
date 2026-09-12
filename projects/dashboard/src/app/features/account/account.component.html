@@ -1,10 +1,10 @@
 <p-toast></p-toast>
 
 <div class="account-page">
-  <h1 class="page-title">Account Settings</h1>
+  <h1 class="page-title">{{ 'account.title' | translate }}</h1>
 
   @if (isLoading()) {
-    <div class="loading">Loading...</div>
+    <div class="loading">{{ 'account.loading' | translate }}</div>
   } @else {
 
   <div class="account-card">
@@ -15,17 +15,14 @@
         <img
           class="profile-photo"
           [src]="photoPreview() || 'assets/default-avatar.png'"
-          alt="Profile photo"
+          [alt]="'account.photoAlt' | translate"
         />
         <div class="photo-overlay">
           <i class="pi pi-camera"></i>
         </div>
       </div>
       <div class="photo-info">
-        <p class="upload-hint">
-          You can upload a .jpg, .png, or .gif photo with
-          max size of 5MB.
-        </p>
+        <p class="upload-hint">{{ 'account.uploadHint' | translate }}</p>
       </div>
       <input
         #photoInput
@@ -42,30 +39,30 @@
       <!-- First Name + Last Name in same row -->
       <div class="form-row">
         <div class="form-field">
-          <label class="field-label">First Name</label>
+          <label class="field-label">{{ 'account.firstName' | translate }}</label>
           <input
             class="field-input"
             type="text"
             [value]="firstName()"
             (input)="firstName.set($any($event.target).value)"
-            placeholder="First name"
+            [placeholder]="'account.firstNamePlaceholder' | translate"
           />
         </div>
         <div class="form-field">
-          <label class="field-label">Last Name</label>
+          <label class="field-label">{{ 'account.lastName' | translate }}</label>
           <input
             class="field-input"
             type="text"
             [value]="lastName()"
             (input)="lastName.set($any($event.target).value)"
-            placeholder="Last name"
+            [placeholder]="'account.lastNamePlaceholder' | translate"
           />
         </div>
       </div>
 
       <!-- Email - full width, disabled -->
       <div class="form-field full-width">
-        <label class="field-label">Email</label>
+        <label class="field-label">{{ 'account.email' | translate }}</label>
         <input
           class="field-input disabled"
           type="email"
@@ -76,23 +73,29 @@
 
       <!-- Phone - full width -->
       <div class="form-field full-width">
-        <label class="field-label">Phone</label>
+        <label class="field-label">{{ 'account.phone' | translate }}</label>
         <input
           class="field-input"
           type="tel"
           [value]="phone()"
           (input)="phone.set($any($event.target).value)"
-          placeholder="Phone number"
+          [placeholder]="'account.phonePlaceholder' | translate"
         />
       </div>
 
       <!-- Gender - full width, always disabled -->
       <div class="form-field full-width">
-        <label class="field-label">Gender</label>
+        <label class="field-label">{{ 'account.gender' | translate }}</label>
         <input
           class="field-input disabled"
           type="text"
-          [value]="profile()?.gender ?? ''"
+          [value]="
+            profile()?.gender === 'MALE'
+              ? ('account.genderMale' | translate)
+              : profile()?.gender === 'FEMALE'
+                ? ('account.genderFemale' | translate)
+                : ''
+          "
           disabled
         />
       </div>
@@ -103,17 +106,17 @@
     <div class="actions-row">
       <div class="actions-left">
         <button class="btn-delete" (click)="deleteAccount()">
-          Delete my account
+          {{ 'account.deleteAccount' | translate }}
         </button>
         <button class="btn-link" (click)="goToChangePassword()">
-          Change Password
+          {{ 'account.changePassword' | translate }}
         </button>
       </div>
       <button
         class="btn-save"
         (click)="saveChanges()"
         [disabled]="isSaving() || !hasChanges()">
-        {{ isSaving() ? 'Saving...' : 'Save Changes' }}
+        {{ (isSaving() ? 'account.saving' : 'account.saveChanges') | translate }}
       </button>
     </div>
 

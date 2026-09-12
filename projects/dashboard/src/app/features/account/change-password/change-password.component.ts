@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { UserService } from '../../../core/services/user.service';
@@ -13,7 +14,7 @@ import { UserService } from '../../../core/services/user.service';
 @Component({
   selector: 'app-change-password',
   standalone: true,
-  imports: [FormsModule, ToastModule],
+  imports: [FormsModule, ToastModule, TranslatePipe],
   providers: [MessageService],
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.scss',
@@ -23,6 +24,7 @@ export class ChangePasswordComponent {
   private readonly userService = inject(UserService);
   private readonly router = inject(Router);
   private readonly messageService = inject(MessageService);
+  private readonly translate = inject(TranslateService);
 
   currentPassword = signal<string>('');
   newPassword = signal<string>('');
@@ -33,7 +35,7 @@ export class ChangePasswordComponent {
   changePassword(): void {
     if (this.newPassword() !== this.confirmPassword()) {
       this.errorMessage.set(
-        'New password and confirm password do not match.'
+        this.translate.instant('account.changePasswordPage.mismatch')
       );
       return;
     }
@@ -50,20 +52,19 @@ export class ChangePasswordComponent {
           this.isLoading.set(false);
           this.messageService.add({
             severity: 'success',
-            summary: 'Success',
-            detail: 'Password changed successfully',
+            summary: this.translate.instant('account.toast.success'),
+            detail: this.translate.instant('account.toast.passwordChanged'),
           });
           this.router.navigate(['/account']);
         },
         error: () => {
           this.errorMessage.set(
-            'Failed to change password. Please check your current password.'
+            this.translate.instant('account.toast.passwordChangeFailed')
           );
           this.messageService.add({
             severity: 'error',
-            summary: 'Error',
-            detail:
-              'Failed to change password. Please check your current password.',
+            summary: this.translate.instant('account.toast.error'),
+            detail: this.translate.instant('account.toast.passwordChangeFailed'),
           });
           this.isLoading.set(false);
         },
