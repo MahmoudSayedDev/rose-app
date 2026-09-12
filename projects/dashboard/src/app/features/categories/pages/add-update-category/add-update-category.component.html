@@ -1,0 +1,27 @@
+<div class="m-4 p-4">
+  @if (categoryId()) {
+    <h2 class="text-lg lg:text-3xl font-bold capitalize">
+      {{ 'categories.update_category' | translate }}: {{ category()?.title }}
+    </h2>
+  } @else {
+    <h2 class="text-lg lg:text-3xl font-bold capitalize">
+      {{ 'categories.add_new_category' | translate }}
+    </h2>
+  }
+</div>
+
+<div class="bg-white dark:bg-[#19191a] m-4 p-4 rounded">
+  <div class="w-full lg:w-[75%]">
+    <app-dynamic-form [fields]="fields()" (submitted)="save($event)" />
+  </div>
+
+  <lib-button
+    type="submit"
+    form="dynamicForm"
+    [disabled]="formSubmited()"
+    [loading]="formSubmited()"
+    [text]="`categories.${category() ? 'update' : 'add'}_category` | translate"
+    styleClass="text-white dark:text-black bg-primary px-3 py-2 lg:px-6 rounded-lg text-sm lg:text-lg w-full mt-42 disabled:bg-zinc-500!"
+  >
+  </lib-button>
+</div>

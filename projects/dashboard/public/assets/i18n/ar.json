@@ -89,5 +89,24 @@
         "Please select a occasion for the product": "يرجى اختيار مناسبة للمنتج"
       }
     }
+  },
+  "categories": {
+    "title": "كل الفئات",
+    "add_new_category": "إضافة فئة جديدة",
+    "add_category": "إضافة فئة",
+    "update_category": "تعديل الفئة",
+    "list": {
+      "name": "الاسم",
+      "products": "المنتجات"
+    },
+    "forms": {
+      "title": "الاسم",
+      "title_placeholder": "أدخل اسم الفئة",
+      "image": "صورة الفئة",
+      "validation": {
+        "title_required": "اسم الفئة مطلوب",
+        "image_required": "صورة الفئة مطلوبة"
+      }
+    }
   }
 }

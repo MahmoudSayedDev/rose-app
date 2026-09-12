@@ -9,7 +9,7 @@
     },
     "messages": {
       "search": "Search...",
-      "Are you sure you want to delete it?": "Are you sure you want to delete it?",
+      "question": "Are you sure you want to delete it?",
       "added successfully": "Added successfully",
       "updated successfully": "Updated successfully",
       "deleted successfully": "Deleted successfully"
@@ -88,6 +88,25 @@
         "Product gallery images are required": "Product gallery images are required",
         "Please select a category for the product": "Please select a category for the product",
         "Please select a occasion for the product": "Please select a occasion for the product"
+      }
+    }
+  },
+  "categories": {
+    "title": "All Categories",
+    "add_new_category": "Add a new category",
+    "add_category": "Add Category",
+    "update_category": "Update Category",
+    "list": {
+      "name": "name",
+      "products": "products"
+    },
+    "forms": {
+      "title": "Name",
+      "title_placeholder": "Enter category name",
+      "image": "Category image",
+      "validation": {
+        "title_required": "Category name is required",
+        "image_required": "Category image is required"
       }
     }
   }
