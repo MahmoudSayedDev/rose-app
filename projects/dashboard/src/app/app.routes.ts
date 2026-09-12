@@ -27,4 +27,25 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./features/products/pages/create-update-product/create-update-product.component').then((c) => c.CreateUpdateProductComponent),
     canActivate: [adminGuard]
   },
+  // {
+  //   path: 'test', component: TestComponent
+  // },
+  {
+    path: 'categories',
+    loadComponent: () => import('./features/categories/pages/categories/categories.component')
+      .then(c => c.CategoriesComponent),
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'categories/create',
+    loadComponent: () => import('./features/categories/pages/add-update-category/add-update-category.component')
+      .then(c => c.AddUpdateCategoryComponent),
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'categories/update/:id',
+    loadComponent: () => import('./features/categories/pages/add-update-category/add-update-category.component')
+      .then(c => c.AddUpdateCategoryComponent),
+    canActivate: [adminGuard]
+  }
 ];

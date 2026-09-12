@@ -1,6 +1,7 @@
 import { ProductCardBadge } from "reusable-components"
 import { MainResponse } from "../../../shared/models/main-response"
 import { Metadata } from "../../../shared/models/metadata"
+import { Category, SubCategory } from "../../categories/models/category";
 
 export type ProductsList = MainResponse<ProductsListPayload>;
 
@@ -23,7 +24,7 @@ export interface Product {
   ratings: number | string
   stock: number | string
   price: number | string
-  priceWithDiscount?: number
+  priceWithDiscount?: number // +
   discountType: string
   discountValue: string
   cover: string
@@ -41,15 +42,15 @@ export interface Product {
   tags?: ProductCardBadge[]
 }
 
-export interface Category {
-  id: string
-  title: string
-}
+// export interface Category {
+//   id: string
+//   title: string
+// }
 
-export interface SubCategory {
-  id: string
-  title: string
-}
+// export interface SubCategory {
+//   id: string
+//   title: string
+// }
 
 export interface Occasions {
   id: string

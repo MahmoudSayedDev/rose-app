@@ -17,6 +17,7 @@ interface LucideIconConfig {
 })
 export class ButtonComponent {
   type = input<'button' | 'submit' | 'reset'>('button');
+  form = input<string>('');
   text = input<string>('');
   styleClass = input<string>('');
   disabled = input<boolean>(false);

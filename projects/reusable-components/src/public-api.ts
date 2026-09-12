@@ -13,3 +13,6 @@ export * from './lib/product-card/product-card.component';
 export * from './lib/paginator/paginator.component';
 export * from './lib/title/title.component';
 export * from './lib/phone-input/phone-input.component';
+export * from './lib/field-error/field-error-component/field-error.component';
+export * from './lib/field-error/token/field-error-messages.token';
+export * from './lib/field-error/types/field-error.types';

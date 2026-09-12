@@ -14,6 +14,19 @@
       "updated successfully": "تم التعديل بنجاح",
       "deleted successfully": "تم الحذف بنجاح"
     },
+    "validation": {
+      "required": "هذا الحقل مطلوب",
+      "requiredTrue": "يجب قبول هذا الحقل",
+      "email": "يرجى إدخال بريد إلكتروني صالح",
+      "minlength": "الحد الأدنى لعدد الاحرف هو {{requiredLength}} حرفاً",
+      "maxlength": "الحد الأقصى لعدد الاحرف هو {{requiredLength}} حرفاً",
+      "min": "الحد الأدنى للقيمة هو {{min}}",
+      "max": "الحد الأقصى للقيمة هو {{max}}",
+      "pattern": "التنسيق غير صالح",
+      "Accepted formats": "الصيغ المقبولة",
+      "Maximum size": "الحد الأقصى للحجم",
+      "MB": "م.ب"
+    },
     "currency": {
       "EGP": "ج.م"
     }
@@ -74,6 +87,25 @@
         "Product gallery images are required": "صور معرض المنتج مطلوبة",
         "Please select a category for the product": "يرجى اختيار تصنيف للمنتج",
         "Please select a occasion for the product": "يرجى اختيار مناسبة للمنتج"
+      }
+    }
+  },
+  "categories": {
+    "title": "كل الفئات",
+    "add_new_category": "إضافة فئة جديدة",
+    "add_category": "إضافة فئة",
+    "update_category": "تعديل الفئة",
+    "list": {
+      "name": "الاسم",
+      "products": "المنتجات"
+    },
+    "forms": {
+      "title": "الاسم",
+      "title_placeholder": "أدخل اسم الفئة",
+      "image": "صورة الفئة",
+      "validation": {
+        "title_required": "اسم الفئة مطلوب",
+        "image_required": "صورة الفئة مطلوبة"
       }
     }
   }

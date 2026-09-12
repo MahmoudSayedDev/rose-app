@@ -1,0 +1,14 @@
+<app-form-field-wrapper [field]="field()" [control]="control()">
+  <textarea
+    [id]="field().name"
+    rows="5"
+    pTextarea
+    [placeholder]="(field().placeholder | translate) ?? ''"
+    [readonly]="field().readonly ?? false"
+    [formControl]="control()"
+    class="w-full bg-transparent! rounded-lg! disabled:bg-[#e2e8f0]! dark:disabled:bg-[#3f3f46]!"
+    [invalid]="control().touched! && control().invalid"
+    variant="filled"
+  >
+  </textarea>
+</app-form-field-wrapper>
