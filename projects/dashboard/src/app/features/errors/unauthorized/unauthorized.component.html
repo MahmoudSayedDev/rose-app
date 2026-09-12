@@ -1,0 +1,21 @@
+<div class="min-h-screen flex flex-col items-center justify-center gap-6 bg-white dark:bg-[#202022] px-4 text-center">
+  <img src="assets/imgs/error-401.png" alt="" class="w-48 h-48" />
+
+  <div>
+    <h1 class="text-2xl font-bold text-zinc-800 dark:text-zinc-100">
+      {{ 'errors.401.title' | translate }}
+    </h1>
+    <p class="mt-2 text-zinc-400 dark:text-zinc-500">
+      {{ 'errors.401.description' | translate }}
+    </p>
+  </div>
+
+  <hr class="w-full max-w-xs border-zinc-200 dark:border-zinc-700" />
+
+  <a
+    routerLink="/"
+    class="px-6 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 text-zinc-800 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+  >
+    {{ 'errors.401.goToHomepage' | translate }}
+  </a>
+</div>

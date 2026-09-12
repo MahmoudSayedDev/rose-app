@@ -10,10 +10,10 @@ describe('App', () => {
     }).compileComponents();
   });
 
-  it('renders the dashboard layout shell', async () => {
+  it('renders a router outlet for the routed layout/pages', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('app-dashboard-layout')).toBeTruthy();
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });

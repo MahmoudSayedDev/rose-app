@@ -32,6 +32,23 @@
       "logout": "Logout"
     }
   },
+  "errors": {
+    "404": {
+      "breadcrumb": "Not Found",
+      "title": "This page does not exist.",
+      "description": "We couldn't find the page you are looking for, please make sure you are in the right path."
+    },
+    "500": {
+      "breadcrumb": "Error",
+      "title": "Oops, something went wrong!",
+      "description": "Something unexpected happened, please refresh the page or try again shortly."
+    },
+    "401": {
+      "title": "You are not authorized to access this page.",
+      "description": "If you think this is wrong, please contact the support.",
+      "goToHomepage": "Go to Homepage"
+    }
+  },
   "products": {
     "all products": "all products",
     "add a new product": "add a new product",
