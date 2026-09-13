@@ -50,6 +50,8 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   min = input<number | null>(null);
   max = input<number | null>(null);
 
+  showErrors = input<boolean>(true);
+
   icons = icons;
   value = signal('');
   isDisabled = signal(false);

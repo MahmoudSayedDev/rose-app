@@ -11,19 +11,6 @@
   color: var(--lib-color-label, #333);
 }
 
-.lib-input__field {
-  padding: var(--lib-spacing-input, 0.5rem 0.75rem);
-  border: 1px solid var(--lib-color-border, #ccc);
-  border-radius: var(--lib-border-radius, 0.25rem);
-  font-size: 1rem;
-  font-family: inherit;
-
-  &:disabled {
-    background-color: #f5f5f5;
-    cursor: not-allowed;
-  }
-}
-
 .lib-input__error {
   margin: 0;
   font-size: 0.8125rem;

@@ -57,7 +57,7 @@ export class Sidebar {
   }
 
   logout() {
-    this._authService.logout(true)
+    this._authService.logout()
     const authUrl = new URL('/login', environment.hostUrl)
     authUrl.searchParams.set('callbackurl', window.location.href)
 
