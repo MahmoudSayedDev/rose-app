@@ -1,0 +1,126 @@
+<p-toast></p-toast>
+
+<div class="account-page">
+  <h1 class="page-title">{{ 'account.title' | translate }}</h1>
+
+  @if (isLoading()) {
+    <div class="loading">{{ 'account.loading' | translate }}</div>
+  } @else {
+
+  <div class="account-card">
+
+    <!-- Photo Section -->
+    <div class="photo-section">
+      <div class="photo-wrapper" (click)="photoInput.click()">
+        <img
+          class="profile-photo"
+          [src]="photoPreview() || 'assets/default-avatar.png'"
+          [alt]="'account.photoAlt' | translate"
+        />
+        <div class="photo-overlay">
+          <i class="pi pi-camera"></i>
+        </div>
+      </div>
+      <div class="photo-info">
+        <p class="upload-hint">{{ 'account.uploadHint' | translate }}</p>
+      </div>
+      <input
+        #photoInput
+        type="file"
+        accept=".jpg,.jpeg,.png,.gif"
+        class="photo-input"
+        (change)="onPhotoChange($event)"
+      />
+    </div>
+
+    <!-- Form Fields -->
+    <div class="form-fields">
+
+      <!-- First Name + Last Name in same row -->
+      <div class="form-row">
+        <div class="form-field">
+          <label class="field-label">{{ 'account.firstName' | translate }}</label>
+          <input
+            class="field-input"
+            type="text"
+            [value]="firstName()"
+            (input)="firstName.set($any($event.target).value)"
+            [placeholder]="'account.firstNamePlaceholder' | translate"
+          />
+        </div>
+        <div class="form-field">
+          <label class="field-label">{{ 'account.lastName' | translate }}</label>
+          <input
+            class="field-input"
+            type="text"
+            [value]="lastName()"
+            (input)="lastName.set($any($event.target).value)"
+            [placeholder]="'account.lastNamePlaceholder' | translate"
+          />
+        </div>
+      </div>
+
+      <!-- Email - full width, disabled -->
+      <div class="form-field full-width">
+        <label class="field-label">{{ 'account.email' | translate }}</label>
+        <input
+          class="field-input disabled"
+          type="email"
+          [value]="profile()?.email ?? ''"
+          disabled
+        />
+      </div>
+
+      <!-- Phone - full width -->
+      <div class="form-field full-width">
+        <label class="field-label">{{ 'account.phone' | translate }}</label>
+        <input
+          class="field-input"
+          type="tel"
+          [value]="phone()"
+          (input)="phone.set($any($event.target).value)"
+          [placeholder]="'account.phonePlaceholder' | translate"
+        />
+      </div>
+
+      <!-- Gender - full width, always disabled -->
+      <div class="form-field full-width">
+        <label class="field-label">{{ 'account.gender' | translate }}</label>
+        <input
+          class="field-input disabled"
+          type="text"
+          [value]="
+            profile()?.gender === 'MALE'
+              ? ('account.genderMale' | translate)
+              : profile()?.gender === 'FEMALE'
+                ? ('account.genderFemale' | translate)
+                : ''
+          "
+          disabled
+        />
+      </div>
+
+    </div>
+
+    <!-- Actions Row -->
+    <div class="actions-row">
+      <div class="actions-left">
+        <button class="btn-delete" (click)="deleteAccount()">
+          {{ 'account.deleteAccount' | translate }}
+        </button>
+        <button class="btn-link" (click)="goToChangePassword()">
+          {{ 'account.changePassword' | translate }}
+        </button>
+      </div>
+      <button
+        class="btn-save"
+        (click)="saveChanges()"
+        [disabled]="isSaving() || !hasChanges()">
+        {{ (isSaving() ? 'account.saving' : 'account.saveChanges') | translate }}
+      </button>
+    </div>
+
+  </div>
+
+  }
+</div>
