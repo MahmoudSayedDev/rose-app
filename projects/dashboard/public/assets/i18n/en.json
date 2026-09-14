@@ -14,6 +14,19 @@
       "updated successfully": "Updated successfully",
       "deleted successfully": "Deleted successfully"
     },
+    "validation": {
+      "required": "This field is required",
+      "requiredTrue": "This field must be accepted",
+      "email": "Please enter a valid email",
+      "minlength": "Minimum length is {{requiredLength}} characters",
+      "maxlength": "Maximum length is {{requiredLength}} characters",
+      "min": "Minimum value is {{min}}",
+      "max": "Maximum value is {{max}}",
+      "pattern": "Invalid format",
+      "Accepted formats": "Accepted formats",
+      "Maximum size": "Maximum size",
+      "MB": "MB"
+    },
     "currency": {
       "EGP": "EGP"
     }

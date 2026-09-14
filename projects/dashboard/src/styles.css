@@ -48,15 +48,21 @@
   --sidebar-item-active-bg: #FBEAEA;
   --sidebar-item-active-text: #A6252A;
 
+  --p-select-filled-background: transparent !important;
+  --p-select-filled-hover-background: transparent !important;
   --p-select-option-selected-color: #A6252A !important;
   --p-select-option-selected-focus-color: #A6252A !important;
   --p-select-option-selected-background: #FBEAEA !important;
   --p-select-option-selected-focus-background: #FBEAEA !important;
 
+  --p-multiselect-filled-background: transparent !important;
+  --p-multiselect-filled-hover-background: transparent !important;
   --p-multiselect-option-selected-color: #A6252A !important;
   --p-multiselect-option-selected-focus-color: #A6252A !important;
   --p-multiselect-option-selected-background: #FBEAEA !important;
   --p-multiselect-option-selected-focus-background: #FBEAEA !important;
+
+  
 }
 
 .dark {

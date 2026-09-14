@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 import { adminGuard } from './core/guards/admin.guard';
 import { DashboardLayout } from './core/layout/dashboard-layout/dashboard-layout';
+import { TestComponent } from './features/testDynamicForm/test.component';
 
 export const appRoutes: Route[] = [
   {
@@ -65,4 +66,7 @@ export const appRoutes: Route[] = [
       },
     ],
   },
+  {
+    path: 'test', component: TestComponent
+  }
 ];
