@@ -1,0 +1,13 @@
+:host ::ng-deep {
+    --p-datatable-header-padding: 2rem 0px;
+    --p-datatable-header-border-width: 0;
+    --p-datatable-header-cell-background: #f1f5f9;
+    --p-datatable-header-cell-selected-color: #A6252A;
+    --p-datatable-header-cell-selected-background: #FBEAEA;
+}
+
+:host-context(.dark) ::ng-deep {
+    --p-datatable-header-cell-background: #27272a;
+    --p-datatable-header-cell-selected-color: #FFA3B9 !important;
+    --p-datatable-header-cell-selected-background: #ffa3b912 !important;
+}

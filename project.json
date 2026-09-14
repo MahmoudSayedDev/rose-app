@@ -3,32 +3,29 @@
   "name": "rose-app",
   "projectType": "application",
   "generators": {
-    "@schematics/angular:component": {
+    "@nx/angular:component": {
       "style": "scss",
-      "type": "component",
-      "addTypeToClassName": true
+      "type": "component"
     },
-    "@schematics/angular:directive": {
-      "type": "directive",
-      "addTypeToClassName": true
+    "@nx/angular:directive": {
+      "type": "directive"
     },
-    "@schematics/angular:service": {
-      "type": "service",
-      "addTypeToClassName": true
+    "@nx/angular:service": {
+      "type": "service"
     },
-    "@schematics/angular:guard": {
+    "@nx/angular:guard": {
       "typeSeparator": "."
     },
-    "@schematics/angular:interceptor": {
+    "@nx/angular:interceptor": {
       "typeSeparator": "."
     },
-    "@schematics/angular:module": {
+    "@nx/angular:module": {
       "typeSeparator": "."
     },
-    "@schematics/angular:pipe": {
+    "@nx/angular:pipe": {
       "typeSeparator": "."
     },
-    "@schematics/angular:resolver": {
+    "@nx/angular:resolver": {
       "typeSeparator": "."
     }
   },

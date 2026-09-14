@@ -1,59 +1,136 @@
 {
-  "sidebar": {
-    "previewWebsite": "معاينة الموقع",
-    "nav": {
-      "dashboard": "لوحة التحكم",
-      "overview": "نظرة عامة",
-      "categories": "الفئات",
-      "occasions": "المناسبات",
-      "products": "المنتجات"
+    "common": {
+        "actions": {
+            "edit": "تعديل",
+            "delete": "حذف",
+            "yes,delete": "نعم، حذف",
+            "no": "لا",
+            "action": "الاجراء"
+        },
+        "messages": {
+            "search": "بحث ...",
+            "Are you sure you want to delete it?": "هل أنت متأكد أنك تريد الحذف؟",
+            "added successfully": "تم الاضافة بنجاح",
+            "updated successfully": "تم التعديل بنجاح",
+            "deleted successfully": "تم الحذف بنجاح"
+        },
+        "validation": {
+            "required": "هذا الحقل مطلوب",
+            "requiredTrue": "يجب قبول هذا الحقل",
+            "email": "يرجى إدخال بريد إلكتروني صالح",
+            "minlength": "الحد الأدنى لعدد الاحرف هو {{requiredLength}} حرفاً",
+            "maxlength": "الحد الأقصى لعدد الاحرف هو {{requiredLength}} حرفاً",
+            "min": "الحد الأدنى للقيمة هو {{min}}",
+            "max": "الحد الأقصى للقيمة هو {{max}}",
+            "pattern": "التنسيق غير صالح",
+            "Accepted formats": "الصيغ المقبولة",
+            "Maximum size": "الحد الأقصى للحجم",
+            "MB": "م.ب"
+        },
+        "currency": {
+            "EGP": "ج.م"
+        }
     },
-    "userMenu": {
-      "profile": "الملف الشخصي",
-      "logout": "تسجيل الخروج"
-    }
-  },
-  "account": {
-    "title": "إعدادات الحساب",
-    "loading": "جاري التحميل...",
-    "photoAlt": "صورة الملف الشخصي",
-    "uploadHint": "يمكنك رفع صورة بصيغة .jpg أو .png أو .gif بحجم أقصى 5 ميجابايت.",
-    "firstName": "الاسم الأول",
-    "firstNamePlaceholder": "الاسم الأول",
-    "lastName": "اسم العائلة",
-    "lastNamePlaceholder": "اسم العائلة",
-    "email": "البريد الإلكتروني",
-    "phone": "رقم الهاتف",
-    "phonePlaceholder": "رقم الهاتف",
-    "gender": "الجنس",
-    "genderMale": "ذكر",
-    "genderFemale": "أنثى",
-    "deleteAccount": "حذف حسابي",
-    "deleteConfirm": "هل أنت متأكد أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء.",
-    "changePassword": "تغيير كلمة المرور",
-    "saveChanges": "حفظ التغييرات",
-    "saving": "جاري الحفظ...",
-    "toast": {
-      "success": "نجاح",
-      "error": "خطأ",
-      "profileUpdated": "تم تحديث الملف الشخصي بنجاح",
-      "profileUpdateFailed": "فشل تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
-      "deleteFailed": "فشل حذف الحساب. يرجى المحاولة مرة أخرى.",
-      "passwordChanged": "تم تغيير كلمة المرور بنجاح",
-      "passwordChangeFailed": "فشل تغيير كلمة المرور. يرجى التحقق من كلمة المرور الحالية."
+    "sidebar": {
+        "previewWebsite": "معاينة الموقع",
+        "nav": {
+            "dashboard": "لوحة التحكم",
+            "overview": "نظرة عامة",
+            "categories": "الفئات",
+            "occasions": "المناسبات",
+            "products": "المنتجات"
+        },
+        "userMenu": {
+            "profile": "الملف الشخصي",
+            "logout": "تسجيل الخروج"
+        }
     },
-    "changePasswordPage": {
-      "title": "تغيير كلمة المرور",
-      "oldPassword": "كلمة المرور الحالية",
-      "oldPasswordPlaceholder": "أدخل كلمة المرور الحالية",
-      "newPassword": "كلمة المرور الجديدة",
-      "newPasswordPlaceholder": "أدخل كلمة المرور الجديدة",
-      "confirmPassword": "تأكيد كلمة المرور",
-      "confirmPasswordPlaceholder": "أكد كلمة المرور الجديدة",
-      "mismatch": "كلمة المرور الجديدة وتأكيدها غير متطابقين.",
-      "back": "رجوع",
-      "submit": "تغيير كلمة المرور",
-      "submitting": "جاري التغيير..."
+    "account": {
+        "title": "إعدادات الحساب",
+        "loading": "جاري التحميل...",
+        "photoAlt": "صورة الملف الشخصي",
+        "uploadHint": "يمكنك رفع صورة بصيغة .jpg أو .png أو .gif بحجم أقصى 5 ميجابايت.",
+        "firstName": "الاسم الأول",
+        "firstNamePlaceholder": "الاسم الأول",
+        "lastName": "اسم العائلة",
+        "lastNamePlaceholder": "اسم العائلة",
+        "email": "البريد الإلكتروني",
+        "phone": "رقم الهاتف",
+        "phonePlaceholder": "رقم الهاتف",
+        "gender": "الجنس",
+        "genderMale": "ذكر",
+        "genderFemale": "أنثى",
+        "deleteAccount": "حذف حسابي",
+        "deleteConfirm": "هل أنت متأكد أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء.",
+        "changePassword": "تغيير كلمة المرور",
+        "saveChanges": "حفظ التغييرات",
+        "saving": "جاري الحفظ...",
+        "toast": {
+            "success": "نجاح",
+            "error": "خطأ",
+            "profileUpdated": "تم تحديث الملف الشخصي بنجاح",
+            "profileUpdateFailed": "فشل تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
+            "deleteFailed": "فشل حذف الحساب. يرجى المحاولة مرة أخرى.",
+            "passwordChanged": "تم تغيير كلمة المرور بنجاح",
+            "passwordChangeFailed": "فشل تغيير كلمة المرور. يرجى التحقق من كلمة المرور الحالية."
+        },
+        "changePasswordPage": {
+            "title": "تغيير كلمة المرور",
+            "oldPassword": "كلمة المرور الحالية",
+            "oldPasswordPlaceholder": "أدخل كلمة المرور الحالية",
+            "newPassword": "كلمة المرور الجديدة",
+            "newPasswordPlaceholder": "أدخل كلمة المرور الجديدة",
+            "confirmPassword": "تأكيد كلمة المرور",
+            "confirmPasswordPlaceholder": "أكد كلمة المرور الجديدة",
+            "mismatch": "كلمة المرور الجديدة وتأكيدها غير متطابقين.",
+            "back": "رجوع",
+            "submit": "تغيير كلمة المرور",
+            "submitting": "جاري التغيير..."
+        }
+    },
+    "products": {
+        "all products": "كل المنتجات",
+        "add a new product": "إضافة منتج جديد",
+        "Add Product": "إضافة منتج",
+        "list": {
+            "name": "الاسم",
+            "price": "السعر",
+            "stock": "العدد",
+            "rating": "التقييم"
+        },
+        "forms": {
+            "Title": "اسم المنتج",
+            "Enter product title": "ادخل اسم المنتج",
+            "Description": "الوصف",
+            "Enter product description": "ادخل وصف المنتج",
+            "Price": "السعر",
+            "Price Example": "مثال: 5000",
+            "Discount": "الخصم",
+            "Discount Example": "مثال: 5",
+            "Price after discount": "السعر بعد الخصم",
+            "after Discount Example": "مثال: 5",
+            "Quantity": "الكمية",
+            "Quantity Example": "مثال: 200",
+            "Product cover image": "صورة غلاف المنتج",
+            "Product gallery": "صور المنتج",
+            "Category": "الفئة",
+            "Occasion": "المناسبة",
+            "Select an option": "اختر",
+            "Upload file": "رفع ملف",
+            "Upload files": "رفع ملفات",
+            "validation": {
+                "Product title is required": "عنوان المنتج مطلوب",
+                "Product description is required": "وصف المنتج مطلوب",
+                "Product price is required": "سعر المنتج مطلوب",
+                "Please enter a valid price": "يرجى إدخال سعر صالح",
+                "Please enter a valid discount": "يرجى إدخال خصم صالح",
+                "Product quantity is required": "كمية المنتج مطلوبة",
+                "Please enter a valid quantity": "يرجى إدخال عدد صالح",
+                "Product cover is required": "صورة غلاف المنتج مطلوبة",
+                "Product gallery images are required": "صور معرض المنتج مطلوبة",
+                "Please select a category for the product": "يرجى اختيار تصنيف للمنتج",
+                "Please select a occasion for the product": "يرجى اختيار مناسبة للمنتج"
+            }
+        }
     }
-  }
 }

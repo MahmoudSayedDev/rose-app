@@ -2,6 +2,7 @@
     class="capitalize cursor-pointer transition-all flex justify-center items-center gap-3 disabled:opacity-75 disabled:cursor-not-allowed! hover:opacity-90"
     [ngClass]="[styleClass(), ' test ', isActive()? activeStyle():'']"
     [type]="type()"
+    [attr.form]="form() || null"
     [disabled]="disabled()"
     (click)="handleClick()"
 >
