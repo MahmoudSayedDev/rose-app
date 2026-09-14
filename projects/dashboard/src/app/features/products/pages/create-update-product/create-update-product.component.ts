@@ -7,10 +7,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TextareaModule } from 'primeng/textarea';
 import { SelectModule } from 'primeng/select';
 import { FileSelectEvent, FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
-import { CategoriesService } from '../../services/categories.service';
 import { OccasionsService } from '../../services/occasions.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Category } from '../../models/category';
 import { Occasion } from '../../models/occasion';
 import { ExternalParams } from '../../../../shared/models/external-params';
 import { CreateProductRequest, Product, SingleProduct } from '../../models/product';
@@ -21,6 +19,8 @@ import { UploadService } from '../../../../shared/services/upload.service';
 import { forkJoin, map, Observable, of, switchMap, tap } from 'rxjs';
 import { DynamicFormItem } from '../../../../shared/components/dynamic-form/models/dynamic-field-group.interface';
 import { DynamicFormComponent } from '../../../../shared/components/dynamic-form/dynamic-form/dynamic-form.component';
+import { CategoriesService } from '../../../categories/services/categories.service';
+import { Category } from '../../../categories/models/category';
 
 
 @Component({

@@ -14,6 +14,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from "@angular/router";
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -65,7 +66,12 @@ export class ProductsComponent extends AppComponentBase implements OnInit {
   }
 
   getProducts() {
-    this._productsService.getProducts(this.getParams()).pipe(takeUntilDestroyed(this._destroyRef)).subscribe({
+    this._productsService.getProducts(this.getParams())
+    .pipe(
+      takeUntilDestroyed(this._destroyRef),
+      finalize(() => this.formSubmited.set(false))
+    )
+    .subscribe({
       next: (res: ProductsList) => {
         const data = res.payload.data.map(product => ({
           ...product,
@@ -81,11 +87,6 @@ export class ProductsComponent extends AppComponentBase implements OnInit {
           total: res.payload.metadata.total,
           totalPages: res.payload.metadata.totalPages,
         });
-
-        this.formSubmited.set(false)
-        // console.log(this.products());
-      }, error: (err) => {
-        this.formSubmited.set(false)
       }
     })
   }
@@ -129,13 +130,12 @@ export class ProductsComponent extends AppComponentBase implements OnInit {
   }
 
   editProduct(product: Product) {
-    // console.log(product.id);
     this._router.navigate(['/products/update', product.id])
   }
 
   deleteProduct(product: Product) {
     this._confirmationService.confirm({
-      message: this._translateService.instant('common.messages.Are you sure you want to delete it?'),
+      message: this._translateService.instant('common.messages.question'),
       header: this._translateService.instant('common.actions.delete'),
       icon: 'pi pi-exclamation-triangle',
       rejectButtonProps: {
@@ -148,10 +148,8 @@ export class ProductsComponent extends AppComponentBase implements OnInit {
         label: this._translateService.instant('common.actions.yes,delete'),
       },
       accept: () => {
-        // console.log(product.id);
         this._productsService.deleteProduct(product.id).subscribe({
-          next: (res) => {
-            // console.log(res);
+          next: () => {
             this.formSubmited.set(true)
             this.getProducts();
             this._toastService.toaster('success', this._translateService.instant('common.messages.deleted successfully'))

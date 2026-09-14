@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AUTH_API_URL } from 'auth-library';
-import { CreateProductRequest, DeleteProductResponse, Product, ProductsList, SingleProduct } from '../models/product';
+import { CreateProductRequest, DeleteProductResponse, ProductsList, SingleProduct } from '../models/product';
 import { ExternalParams } from '../../../shared/models/external-params';
-import { ProductCardBadge } from 'reusable-components';
 import { HelperService } from '../../../shared/services/helper.service';
 
 @Service()
