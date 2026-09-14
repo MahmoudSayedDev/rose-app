@@ -45,6 +45,49 @@
             "logout": "Logout"
         }
     },
+    "account": {
+        "title": "Account Settings",
+        "loading": "Loading...",
+        "photoAlt": "Profile picture",
+        "uploadHint": "You can upload a .jpg, .png, or .gif image with a maximum size of 5 MB.",
+        "firstName": "First Name",
+        "firstNamePlaceholder": "First Name",
+        "lastName": "Last Name",
+        "lastNamePlaceholder": "Last Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "phonePlaceholder": "Phone Number",
+        "gender": "Gender",
+        "genderMale": "Male",
+        "genderFemale": "Female",
+        "deleteAccount": "Delete My Account",
+        "deleteConfirm": "Are you sure you want to delete your account? This action cannot be undone.",
+        "changePassword": "Change Password",
+        "saveChanges": "Save Changes",
+        "saving": "Saving...",
+        "toast": {
+            "success": "Success",
+            "error": "Error",
+            "profileUpdated": "Profile updated successfully",
+            "profileUpdateFailed": "Failed to update your profile. Please try again.",
+            "deleteFailed": "Failed to delete your account. Please try again.",
+            "passwordChanged": "Password changed successfully",
+            "passwordChangeFailed": "Failed to change your password. Please check your current password."
+        },
+        "changePasswordPage": {
+            "title": "Change Password",
+            "oldPassword": "Current Password",
+            "oldPasswordPlaceholder": "Enter your current password",
+            "newPassword": "New Password",
+            "newPasswordPlaceholder": "Enter your new password",
+            "confirmPassword": "Confirm Password",
+            "confirmPasswordPlaceholder": "Confirm your new password",
+            "mismatch": "The new password and confirmation password do not match.",
+            "back": "Back",
+            "submit": "Change Password",
+            "submitting": "Changing..."
+        }
+    },
     "products": {
         "all products": "all products",
         "add a new product": "add a new product",
@@ -108,6 +151,43 @@
                 "title_required": "Category name is required",
                 "image_required": "Category image is required"
             }
+        }
+    },
+    "occasions": {
+        "all occasions": "all occasions",
+        "add a new occasion": "add a new occasion",
+        "Add Occasion": "Add Occasion",
+        "update Occasion": "Update Occasion",
+        "list": {
+            "name": "name",
+            "description": "description"
+        },
+        "forms": {
+            "Title": "Title",
+            "Enter occasion title": "Enter occasion title",
+            "Description": "Description",
+            "Enter occasion description": "Enter occasion description",
+            "validation": {
+                "Occasion title is required": "Occasion title is required",
+                "Occasion description is required": "Occasion description is required"
+            }
+        }
+    },
+    "errors": {
+        "404": {
+            "breadcrumb": "Not Found",
+            "title": "This page does not exist.",
+            "description": "We couldn't find the page you are looking for, please make sure you are in the right path."
+        },
+        "500": {
+            "breadcrumb": "Error",
+            "title": "Oops, something went wrong!",
+            "description": "Something unexpected happened, please refresh the page or try again shortly."
+        },
+        "401": {
+            "title": "You are not authorized to access this page.",
+            "description": "If you think this is wrong, please contact the support.",
+            "goToHomepage": "Go to Homepage"
         }
     }
 }

@@ -1,67 +1,105 @@
 import { Route } from '@angular/router';
+
 import { adminGuard } from './core/guards/admin.guard';
+import { DashboardLayout } from './core/layout/dashboard-layout/dashboard-layout';
 
 export const appRoutes: Route[] = [
+  // Unauthorized page — outside dashboard layout
+  {
+    path: '401',
+    loadComponent: () => import('./features/errors/unauthorized/unauthorized.component').then((m) => m.UnauthorizedComponent),
+  },
+
+  // All dashboard routes
   {
     path: '',
-    redirectTo: 'overview',
-    pathMatch: 'full',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'overview',
+      },
+
+      // Overview
+      {
+        path: 'overview',
+        loadComponent: () => import('./features/overview/overview.component').then((m) => m.OverviewComponent),
+        canActivate: [adminGuard],
+      },
+
+      // Account
+      {
+        path: 'account',
+        loadComponent: () => import('./features/account/account.component').then((m) => m.AccountComponent),
+      },
+      {
+        path: 'account/change-password',
+        loadComponent: () => import('./features/account/change-password/change-password.component').then((m) => m.ChangePasswordComponent),
+      },
+
+      // Products
+      {
+        path: 'products',
+        loadComponent: () => import('./features/products/products.component').then((m) => m.ProductsComponent),
+        canActivate: [adminGuard],
+      },
+      {
+        path: 'products/create',
+        loadComponent: () => import('./features/products/pages/create-update-product/create-update-product.component').then((m) => m.CreateUpdateProductComponent),
+        canActivate: [adminGuard],
+      },
+      {
+        path: 'products/update/:id',
+        loadComponent: () => import('./features/products/pages/create-update-product/create-update-product.component').then((m) => m.CreateUpdateProductComponent),
+        canActivate: [adminGuard],
+      },
+
+      // Categories
+      {
+        path: 'categories',
+        loadComponent: () => import('./features/categories/pages/categories/categories.component').then((m) => m.CategoriesComponent),
+        canActivate: [adminGuard],
+      },
+      {
+        path: 'categories/create',
+        loadComponent: () => import('./features/categories/pages/add-update-category/add-update-category.component').then((m) => m.AddUpdateCategoryComponent),
+        canActivate: [adminGuard],
+      },
+      {
+        path: 'categories/update/:id',
+        loadComponent: () => import('./features/categories/pages/add-update-category/add-update-category.component').then((m) => m.AddUpdateCategoryComponent),
+        canActivate: [adminGuard],
+      },
+
+      // Occasions
+      {
+        path: 'occasions',
+        loadComponent: () => import('./features/occasions/occasions.component').then((m) => m.OccasionsComponent),
+        canActivate: [adminGuard],
+      },
+      {
+        path: 'occasions/create',
+        loadComponent: () => import('./features/occasions/pages/create-update-occasion/create-update-occasion.component').then((m) => m.CreateUpdateOccasionComponent),
+        canActivate: [adminGuard],
+      },
+      {
+        path: 'occasions/update/:id',
+        loadComponent: () => import('./features/occasions/pages/create-update-occasion/create-update-occasion.component').then((m) => m.CreateUpdateOccasionComponent),
+        canActivate: [adminGuard],
+      },
+
+      // Server Error
+      {
+        path: '500',
+        loadComponent: () => import('./features/errors/server-error/server-error.component').then((m) => m.ServerErrorComponent),
+      },
+      
+      // Not Found — must be last
+      {
+        path: '**',
+        loadComponent: () => import('./features/errors/not-found/not-found.component').then((m) => m.NotFoundComponent),
+      },
+    ],
   },
-  {
-    path: 'overview',
-    loadComponent: () =>
-      import('./features/overview/overview.component').then(
-        (m) => m.OverviewComponent
-      ),
-  },
-  {
-    path: 'account',
-    loadComponent: () =>
-      import('./features/account/account.component').then(
-        (m) => m.AccountComponent
-      ),
-  },
-  {
-    path: 'account/change-password',
-    loadComponent: () =>
-      import(
-        './features/account/change-password/change-password.component'
-      ).then((m) => m.ChangePasswordComponent),
-  },
-  {
-    path: 'products',
-    loadComponent: () => import('./features/products/products.component').then((c) => c.ProductsComponent),
-    canActivate: [adminGuard]
-  },
-  {
-    path: 'products/create',
-    loadComponent: () => import('./features/products/pages/create-update-product/create-update-product.component').then((c) => c.CreateUpdateProductComponent),
-    canActivate: [adminGuard]
-  },
-  {
-    path: 'products/update/:id',
-    loadComponent: () => import('./features/products/pages/create-update-product/create-update-product.component').then((c) => c.CreateUpdateProductComponent),
-    canActivate: [adminGuard]
-  },
-  // {
-  //   path: 'test', component: TestComponent
-  // },
-  {
-    path: 'categories',
-    loadComponent: () => import('./features/categories/pages/categories/categories.component')
-      .then(c => c.CategoriesComponent),
-    canActivate: [adminGuard]
-  },
-  {
-    path: 'categories/create',
-    loadComponent: () => import('./features/categories/pages/add-update-category/add-update-category.component')
-      .then(c => c.AddUpdateCategoryComponent),
-    canActivate: [adminGuard]
-  },
-  {
-    path: 'categories/update/:id',
-    loadComponent: () => import('./features/categories/pages/add-update-category/add-update-category.component')
-      .then(c => c.AddUpdateCategoryComponent),
-    canActivate: [adminGuard]
-  }
 ];

@@ -1,0 +1,60 @@
+<div class="m-4 p-4">
+    @if (occasionId()) {
+        <h2 class="text-lg lg:text-3xl font-bold capitalize">{{'occasions.update Occasion' | translate}}: {{occasion()?.title}}</h2>
+    } @else {
+        <h2 class="text-lg lg:text-3xl font-bold capitalize">{{'occasions.add a new occasion' | translate}}</h2>
+    }
+</div>
+
+<div class="bg-white dark:bg-[#19191a] m-4 p-4 rounded">
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="w-full lg:w-[75%]">
+            <div class="mb-4">
+                <lib-input
+                    [label]="'occasions.forms.Title' | translate"
+                    type="text"
+                    inputId="title"
+                    [placeholder]="'occasions.forms.Enter occasion title' | translate"
+                    [required]="true"
+                    formControlName="title"
+                    [valid]="form.get('title')?.touched! && form.get('title')?.hasError('required')!"
+                    [customErrorMessages]="{
+                        required: 'occasions.forms.validation.Occasion title is required',
+                    }"
+                    styleClass="bg-transparent! rounded-lg!"
+                ></lib-input>
+            </div>
+
+            <div class="mb-4">
+                <div class="flex gap-1">
+                    <label for="description" class="label dark:text-white! capitalize">{{'occasions.forms.Description' | translate}}</label>
+                    <span class="text-red-600 font-medium">*</span>
+                </div>
+                <textarea
+                    id="description"
+                    rows="5"
+                    pTextarea
+                    [placeholder]="'occasions.forms.Enter occasion description' | translate"
+                    class="w-full bg-transparent! mt-2"
+                    formControlName="description"
+                    [invalid]="form.get('description')?.touched! && form.get('description')?.hasError('required')!"
+                    variant="filled">
+                </textarea>
+
+                @if (form.get('description')?.touched! && form.get('description')?.hasError('required')!) {
+                    <div class="error">
+                        {{'occasions.forms.validation.Occasion description is required' | translate}}
+                    </div>
+                }
+            </div>
+
+            <lib-button
+                type="submit"
+                [disabled]="formSubmited() || form.invalid"
+                [loading]="formSubmited()"
+                [text]="`occasions.${occasionId() ? 'update' : 'Add'} Occasion` | translate"
+                styleClass="text-white dark:text-black bg-primary px-3 py-2 lg:px-6 rounded-lg text-sm lg:text-lg w-full mt-8 disabled:bg-zinc-500!">
+            </lib-button>
+        </div>
+    </form>
+</div>

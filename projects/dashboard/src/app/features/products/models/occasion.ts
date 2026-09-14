@@ -8,6 +8,12 @@ export interface OccasionsListPayload {
   metadata: Metadata;
 }
 
+export type SingleOccasion = MainResponse<SingleOccasionPayload>;
+
+export interface SingleOccasionPayload {
+  occasion: Occasion;
+}
+
 export interface Occasion {
   id: string
   title: string
@@ -16,4 +22,16 @@ export interface Occasion {
   immutable: boolean
   createdAt: string
   updatedAt: string
+}
+
+export interface CreateOccasionRequest {
+  title: string;
+  description: string;
+}
+
+export interface DeleteOccasionResponse {
+  status: boolean;
+  code: number;
+  message: string;
+  payload: string;
 }

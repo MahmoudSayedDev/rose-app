@@ -13,7 +13,14 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
 
-      if (error.error?.message.includes('Invalid or expired token')) {
+      // Network failure (status 0) or a genuine server-side crash — send the
+      // user to the global 500 page instead of a toast they can't act on.
+      if (error.status === 0 || error.status >= 500) {
+        _router.navigate(['/500']);
+        return throwError(() => error);
+      }
+
+      if (error.error?.message?.includes('Invalid or expired token')) {
         const authUrl = new URL('/login', environment.hostUrl)
         authUrl.searchParams.set('callbackurl', window.location.href)
 

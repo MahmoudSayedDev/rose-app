@@ -1,14 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DashboardLayout } from "./core/layout/dashboard-layout/dashboard-layout";
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
   imports: [
-    RouterModule, 
-    DashboardLayout,
+    RouterModule,
     ToastModule
   ],
   selector: 'app-root',
