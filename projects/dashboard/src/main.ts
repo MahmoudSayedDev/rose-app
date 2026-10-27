@@ -1,9 +1,7 @@
 import '@angular/compiler';
 import { initFederation } from '@angular-architects/native-federation';
 
-const manifest = window.location.hostname === 'localhost' ? '/federation.manifest.json' : '/federation.manifest.prod.json';
-
-initFederation(manifest, {
+initFederation({}, {
   hostRemoteEntry: { url: "./remoteEntry.json" }
 })
   .catch(err => console.error(err))
