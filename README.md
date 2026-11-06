@@ -1,62 +1,140 @@
-# RoseApp
+# 🌹 Rose App – E-commerce Platform
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.0.
+A scalable E-commerce platform built with **Angular 22**, **Nx Monorepo**, and **Angular Native Federation**, following a **Micro Frontend Architecture**.
 
-## Development server
+The workspace consists of two independent Angular applications and shared internal libraries, designed to improve modularity, maintainability, and code reusability.
 
-To start a local development server, run:
+## 🏗️ Architecture
 
-```bash
-ng serve
+The project follows an Nx Monorepo architecture with a Micro Frontend approach.
+
+### Applications
+
+- **Rose App (Main Application):** The customer-facing E-commerce storefront.
+- **Dashboard (Admin Application):** An independent application for administrative operations.
+
+### Shared Libraries
+
+- **Auth Library:** Centralized authentication functionality shared across applications.
+- **Reusable Components:** Shared UI components to maintain consistency and reduce code duplication.
+
+### Architecture Overview
+
+```text
+rose-app/
+│
+├── apps/
+│   ├── rose-app/          # Main Storefront (Shell)
+│   └── dashboard/         # Admin Dashboard (Remote)
+│
+├── libs/
+│   ├── auth-library/      # Shared Authentication
+│   └── reusable-components/ # Shared UI Components
+│
+└── nx.json
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+*Directory structure is illustrative.*
 
-## Code scaffolding
+## ✨ Key Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Micro Frontend Architecture
+- Built using Nx Monorepo and Angular Native Federation.
+- Separated the Storefront and Admin Dashboard into independent Angular applications.
+- Configured application federation and remote application integration.
+- Organized shared functionality through internal Angular libraries.
+
+### Authentication & Authorization
+- Centralized authentication shared between the Main Application and Admin Dashboard.
+- Role-Based Access Control (RBAC) supporting User and Admin roles.
+- Callback URL-based login flow to preserve the user's intended destination.
+- Automatic redirection based on authentication status and user role.
+- Seamless navigation between the Storefront and Dashboard based on permissions.
+
+### Frontend Development
+- Standalone Angular components.
+- Angular Signals and RxJS.
+- Reusable UI components.
+- Responsive layouts using PrimeNG and Tailwind CSS.
+- Multilingual support using ngx-translate.
+
+### Build & Development
+- Nx workspace management.
+- Independent application build configurations.
+- Development and production environments.
+- Optimized builds using Angular build tools and esbuild.
+
+## 🛠️ Tech Stack
+
+| Category | Technologies |
+|---|---|
+| Framework | Angular 22 |
+| Language | TypeScript |
+| Monorepo | Nx |
+| Architecture | Micro Frontends |
+| Federation | Angular Native Federation |
+| Reactive Programming | RxJS |
+| State Management | Angular Signals |
+| UI Components | PrimeNG |
+| Styling | Tailwind CSS |
+| Internationalization | ngx-translate |
+| Build Tools | Angular Build, esbuild |
+| Testing | Vitest |
+| Version Control | Git & GitHub |
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js >= 22.22.3
+- npm 11.16.0
+
+### Installation
 
 ```bash
-ng generate component component-name
+git clone <repository-url>
+cd rose-app
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Development
+
+Run the Main Application:
 
 ```bash
-ng generate --help
+npm run serve:shell
 ```
 
-## Building
-
-To build the project run:
+Run the Admin Dashboard:
 
 ```bash
-ng build
+npm run serve:dashboard
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Run both applications simultaneously:
 
 ```bash
-ng test
+npm run serve:all
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Build
 
 ```bash
-ng e2e
+npm run build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🧪 Testing
 
-## Additional Resources
+Run unit tests:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npm test
+```
 
-ng build reusable-components --watch
-ng build auth-library --watch
+## 📌 Project Goals
+
+- Apply scalable and maintainable frontend architecture.
+- Improve code reusability through shared libraries.
+- Separate application responsibilities using Micro Frontends.
+- Implement centralized authentication and role-based authorization.
+- Manage multiple Angular applications efficiently within a single Nx workspace.
